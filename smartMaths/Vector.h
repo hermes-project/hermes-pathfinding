@@ -12,10 +12,11 @@ public:
     /** Constructeurs */
     Vector(int x, int y);
     Vector(double ray, double theta);
+    Vector();
 
     /** Méthodes de base */
-    Vector operator+(Vector& other);
-    Vector operator-(Vector& other);
+    Vector operator+(const Vector& other)const;
+    Vector operator-(const Vector& other)const;
 
     /** Getters & Setters */
     int getX() const;

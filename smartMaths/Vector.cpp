@@ -20,13 +20,20 @@ Vector::Vector(double ray, double theta){
     computeCartesian();
 }
 
+/** Constructeur par défaut */
+Vector::Vector() {
+    this->x = 0;
+    this->y = 0;
+    computePolar();
+}
+
 /** Retourne un nouvel objet de type vecteur, somme des deux vecteurs */
-Vector Vector:: operator+(Vector& other){
+Vector Vector:: operator+(const Vector& other) const{
     return Vector(this->x + other.x, this->y + other.y);
 }
 
 /** Retourne un nouvel objet de type vecteur, soustraction des deux vecteurs */
-Vector Vector:: operator-(Vector& other){
+Vector Vector:: operator-(const Vector& other) const{
     return Vector(this->x - other.x, this->y - other.y);
 }
 

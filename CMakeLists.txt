@@ -3,4 +3,4 @@ project(Hermes_pathfinding)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(Hermes_pathfinding main.cpp smartMaths/Vector.cpp smartMaths/Vector.h)
+add_executable(Hermes_pathfinding main.cpp smartMaths/Vector.cpp smartMaths/Vector.h smartMaths/maths_lib.h smartMaths/Circle.cpp smartMaths/Circle.h)

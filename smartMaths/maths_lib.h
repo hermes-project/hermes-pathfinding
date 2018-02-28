@@ -1,0 +1,8 @@
+//
+// Created by rem on 28/02/18.
+//
+
+#ifndef HERMES_PATHFINDING_MATHS_LIB_H
+#define HERMES_PATHFINDING_MATHS_LIB_H
+
+#endif //HERMES_PATHFINDING_MATHS_LIB_H
