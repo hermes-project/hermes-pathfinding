@@ -38,9 +38,8 @@ bool intersect(const Vector vector0, const Vector vector1, const Circle circle){
     }
 
     // Sinon on vérifie que le centre du cercle soit dans le triangle définit par l'origine et les deux points délimitant le segment
-    // TODO : Ne fonctionne pas si les vecteurs délimitant le segment sont à x=0...
-    return !((circle.getCenter().getY() < (vector0.getY() / vector0.getX()) * circle.getCenter().getX()) && (circle.getCenter().getY() < (vector1.getY() / vector1.getX()) * circle.getCenter().getX())
-             || (circle.getCenter().getY() > (vector0.getY()/vector0.getX()) * circle.getCenter().getX()) && (circle.getCenter().getY() > (vector1.getY()/vector1.getX())*circle.getCenter().getX()));
+    return !((circle.getCenter().getY()*vector0.getX() < vector0.getY() * circle.getCenter().getX()) && (circle.getCenter().getY()*vector0.getX() < vector1.getY() * circle.getCenter().getX())
+             || (circle.getCenter().getY()*vector0.getX() > vector0.getY() * circle.getCenter().getX()) && (circle.getCenter().getY()*vector1.getX() > vector1.getY()*circle.getCenter().getX()));
 
 }
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "smartMaths/Vector.h"
 #include "smartMaths/Circle.h"
+#include "graph/Node.h"
 
 // Pour le moment c'est un foure-tout pour les tests, histoire de bien apprendre le C++
 int main() {
@@ -12,6 +13,8 @@ int main() {
     Circle* circle = new Circle(*vec0, 200);
     std::cout<<"Circle cir : "<< (cir.getCenter().getX()) << "," << (cir.getCenter().getY()) << ", ray :" << cir.getRay() << "\n";
     std::cout<<"Circle circle : "<< ((*circle).getCenter().getX()) << "," << ((*circle).getCenter().getY()) << ", ray :" << (*circle).getRay() << "\n";
+
+    Node node(50, 200);
 
     delete vec0;
     delete circle;
