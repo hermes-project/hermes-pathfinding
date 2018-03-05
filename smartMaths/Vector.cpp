@@ -37,6 +37,11 @@ Vector Vector:: operator-(const Vector& other) const{
     return Vector(this->x - other.x, this->y - other.y);
 }
 
+/** Retourne la distance entre deux points */
+int Vector::distanceTo(const Vector &other) const{
+    return (int)((this-other).getRay());
+}
+
 /** Calcul des coordonnées polaires à partir des cartéiennes */
 void Vector::computePolar() {
     this->ray=sqrt(this->x*this->x + this->y*this->y);

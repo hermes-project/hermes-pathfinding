@@ -5,7 +5,6 @@
 #ifndef HERMES_PATHFINDING_RIDGE_H
 #define HERMES_PATHFINDING_RIDGE_H
 
-
 #include "Node.h"
 
 class Ridge {
@@ -22,8 +21,11 @@ public:
     void setCost(int cost);
 
 private:
-    Node* node0;
-    Node* node1;
+    /** Noeuds auxquels est rattachés l'arrête */
+    Node* node0 ;
+    Node* node1 ;
+
+    /** Coût de l'arrête */
     int cost;
 };
 
