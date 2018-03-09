@@ -3,7 +3,7 @@
 //
 
 #include "Vector.h"
-#include "Circle.h"
+#include "Ellipse.h"
 #include <cmath>
 
 #ifndef HERMES_PATHFINDING_MATHS_LIB_H
