@@ -7,23 +7,17 @@
 #include "Vector.h"
 
 /** Constructeur en coordonnées cartésiennes */
-Vector::Vector(int x, int y){
-    this->x=x;
-    this->y=y;
+Vector::Vector(int x, int y) : x(x), y(y){
     computePolar();
 }
 
 /** Constructeur en coordonnées polaires */
-Vector::Vector(double ray, double theta){
-    this->ray=ray;
-    this->theta=theta;
+Vector::Vector(double ray, double theta) : ray(ray), theta(theta){
     computeCartesian();
 }
 
 /** Constructeur par défaut */
-Vector::Vector() {
-    this->x = 0;
-    this->y = 0;
+Vector::Vector() : x(0), y(0){
     computePolar();
 }
 

@@ -3,10 +3,9 @@
 //
 
 #include "Ridge.h"
+
 /** Constructeur */
-Ridge::Ridge(Node *node0, Node *node1) {
-    this->node0 = node0;
-    this->node1 = node1;
+Ridge::Ridge(Node *node0, Node *node1) : node0(node0), node1(node1){
     this->cost = node0->distanceTo(*node1);
 }
 

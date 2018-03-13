@@ -6,9 +6,8 @@
 #include "Ellipse.h"
 
 /** Constructeur */
-Ellipse::Ellipse(Vector center, int width, int height, double angle) {
-    this->center = center;
-    this->angle = angle;
+Ellipse::Ellipse(Vector center, int width, int height, double angle) :
+        center (center), angle (angle){
 
     // width doit être la plus grande valeur
     if(height > width){
