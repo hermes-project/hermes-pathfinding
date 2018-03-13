@@ -20,8 +20,8 @@ public:
     void createLink(Node *node);
 
     /** Getters & Setters */
-    Node *getPredecessor() const;
-    void setPredecessor(Node *predecessor);
+    Node& getPredecessor() const;
+    void setPredecessor(Node& predecessor);
     int getCostFromBegin() const;
     void setCostFromBegin(int costFromBegin);
     int getHeuristic() const;

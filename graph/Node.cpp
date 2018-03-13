@@ -12,10 +12,10 @@ Node::Node(double ray, double theta) : Vector(ray, theta){}
 void Node::createLink(Node *node) {}
 
 /** Getters & Setters */
-Node *Node::getPredecessor() const {
+Node& Node::getPredecessor() const {
     return predecessor;
 }
-void Node::setPredecessor(Node *predecessor) {
+void Node::setPredecessor(Node& predecessor) {
     Node::predecessor = predecessor;
 }
 int Node::getCostFromBegin() const {

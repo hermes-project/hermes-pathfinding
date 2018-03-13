@@ -4,6 +4,7 @@
 
 #include "Vector.h"
 #include "Ellipse.h"
+#include "Circle.h"
 #include <cmath>
 
 #ifndef HERMES_PATHFINDING_MATHS_LIB_H
@@ -33,7 +34,7 @@ bool intersect(const Vector vector0, const Vector vector1, const Circle circle){
     int distance = (int) (zeroToCenter.getRay()*sin(zeroToCenter.getTheta()-segment.getTheta()));
 
     // Si la distance entre la droite porteuse du segment et le centre du cercle est supérieure au rayon, pas d'intersection
-    if(distance > circle.getRay()){
+    if(distance > circle.getWidth()){
         return false;
     }
 
