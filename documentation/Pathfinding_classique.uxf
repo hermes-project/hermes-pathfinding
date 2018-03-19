@@ -11,8 +11,8 @@
     </coordinates>
     <panel_attributes>Graph
 --
--nodeList : ArrayList&lt;Node&gt;
--obstacles : ArrayList&lt;Obstacle&gt;
+-nodeList : List&lt;Node&gt;
+-obstacles : List&lt;Obstacle&gt;
 --
 -initialisation() : void
 +addNode() : void
@@ -45,8 +45,8 @@ Note : need a good comparator/heuristic
     </coordinates>
     <panel_attributes>Landmark (Forum)
 --
--listStaticObstalce : ArrayList&lt;Obstacle&gt;
--listMovingObstacle : ArrayList&lt;Obstacle&gt;
+-listStaticObstalce : List&lt;Obstacle&gt;
+-listMovingObstacle : List&lt;Obstacle&gt;
 --
 +initObstacles() : void
 +isInObstacle(Vector vector) : boolean
@@ -96,67 +96,67 @@ Note : need a good comparator/heuristic
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
+      <x>820</x>
       <y>270</y>
-      <w>90</w>
+      <w>30</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
+      <x>460</x>
       <y>270</y>
-      <w>140</w>
+      <w>30</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>120.0;10.0;10.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>560</x>
-      <y>410</y>
+      <y>470</y>
       <w>170</w>
-      <h>90</h>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1
 m2=1</panel_attributes>
-    <additional_attributes>10.0;70.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;10.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>770</x>
       <y>480</y>
-      <w>50</w>
+      <w>30</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=*
 m2=1</panel_attributes>
-    <additional_attributes>10.0;80.0;30.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
+      <x>930</x>
       <y>480</y>
-      <w>130</w>
+      <w>50</w>
       <h>100</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1.*</panel_attributes>
-    <additional_attributes>110.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
