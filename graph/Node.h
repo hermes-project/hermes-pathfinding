@@ -7,7 +7,6 @@
 
 #include <vector>
 #include "../smartMaths/Vector.h"
-#include "Ridge.h"
 
 // TODO : rajouter la liste des arrêtes (ou un HashMap avec pointeur de Noeud voisin et coût associé)
 class Node : public Vector{
@@ -20,8 +19,8 @@ public:
     void createLink(Node *node);
 
     /** Getters & Setters */
-    Node& getPredecessor() const;
-    void setPredecessor(Node& predecessor);
+    Node* getPredecessor() const;
+    void setPredecessor(Node* predecessor);
     int getCostFromBegin() const;
     void setCostFromBegin(int costFromBegin);
     int getHeuristic() const;
@@ -29,7 +28,7 @@ public:
 
 private:
     /** Informations propres au noeud */
-    Node *predecessor;
+    Node* predecessor;
     int costFromBegin;
     int heuristic;
 };
