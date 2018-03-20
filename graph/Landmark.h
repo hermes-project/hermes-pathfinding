@@ -5,6 +5,8 @@
 #ifndef HERMES_PATHFINDING_LANDMARK_H
 #define HERMES_PATHFINDING_LANDMARK_H
 
+using namespace std;
+
 #include <vector>
 #include "../smartMaths/Ellipse.h"
 #include "Node.h"
@@ -18,7 +20,7 @@ public:
 private:
     int size_X;
     int size_Y;
-    std::vector listStaticObstacle<Circle>;
+    vector<Circle> listStaticObstacle;
 
     /** Initialise des obstacles de taille random */
     void initObstacle(int nb_obstacle);

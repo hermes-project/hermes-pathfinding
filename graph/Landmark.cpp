@@ -2,8 +2,6 @@
 // Created by rem on 20/03/18.
 //
 
-using namespace std;
-
 #include <cstdlib>
 #include <time.h>
 #include <random>
@@ -20,13 +18,13 @@ void Landmark::initObstacle(int nb_obstacle) {
         int posX = rand()%size_X - size_X/2;
         int posY = rand()%size_Y - size_Y/2;
         std::default_random_engine generator;
-        std::normal_distribution<int> ray(50, 20);
-        listStaticObstacle.push_back(Circle(Vector(posX, posY), ray(generator)));
+        std::normal_distribution<float> ray(50, 20);
+        listStaticObstacle.push_back(Circle(Vector(posX, posY), (int)ray(generator)));
     }
 }
 
 bool Landmark::isInObstacle(const Vector& vector){
-    vector<Circle>::iterator it;
+    std::vector<Circle>::iterator it;
     for (it = listStaticObstacle.begin(); it != listStaticObstacle.end(); it++){
         if((vector-it->getCenter()).getRay() < it->getWidth()/2){
             return true;
