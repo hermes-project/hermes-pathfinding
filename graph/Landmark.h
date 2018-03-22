@@ -8,14 +8,20 @@
 using namespace std;
 
 #include <vector>
+#include <QtGui/QPaintEvent>
+#include <QtWidgets/QFrame>
 #include "../smartMaths/Ellipse.h"
 #include "Node.h"
 #include "../smartMaths/Circle.h"
 
-class Landmark {
+class Landmark : public QFrame{
 public:
     /** Constructeur */
     Landmark(int size_X, int size_Y, int nb_obstalce);
+
+    /** Getters & Setters */
+    int getSize_X() const;
+    int getSize_Y() const;
 
 private:
     int size_X;
@@ -26,7 +32,10 @@ private:
     void initObstacle(int nb_obstacle);
     bool isInObstacle(const Vector& vector);
     bool isInLandmark(const Vector& vector);
-};
 
+    /** Methode qui dessine */
+    void paintEvent(QPaintEvent* event);
+    Vector displayRef(Vector vec);
+};
 
 #endif //HERMES_PATHFINDING_LANDMARK_H

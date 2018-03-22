@@ -5,15 +5,16 @@
 #ifndef HERMES_PATHFINDING_WINDOW_H
 #define HERMES_PATHFINDING_WINDOW_H
 
-
 #include <QtWidgets/QWidget>
 #include "Menu.h"
+#include "../graph/Landmark.h"
 
 class Window : public QWidget{
 public:
-    Window(QWidget* parent);
+    Window(QWidget* parent, Landmark* landmark);
 private:
     Menu* menu;
+    Landmark* landmark;
 };
 
 

@@ -18,6 +18,7 @@ public:
     Vector operator+(const Vector& other)const;
     Vector operator-(const Vector& other)const;
     int distanceTo(const Vector& other)const;
+    Vector clone();
 
     /** Getters & Setters */
     int getX() const;

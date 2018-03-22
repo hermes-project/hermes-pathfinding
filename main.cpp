@@ -8,7 +8,8 @@
 int main(int argc, char** argv) {
 
     QApplication app(argc, argv);
-    Window window(NULL);
+    Landmark* landmark = new Landmark(1000, 500, 20);
+    Window window(NULL, landmark);
     Vector vec(50,0);
     Vector* vec0 = new Vector(100, 100);
     std::cout<<"Somme des deux vecteurs : "<< (vec+*vec0).getX() << "," << (vec+*vec0).getY() << "\n";
@@ -16,7 +17,7 @@ int main(int argc, char** argv) {
     Node node(50, 200);
 
     window.setWindowTitle("Hermès - PF");
-    window.setMinimumSize(640,480);
+    window.setMinimumSize(landmark->getSize_X(),landmark->getSize_Y());
     window.showMaximized();
     window.show();
     int error=app.exec();

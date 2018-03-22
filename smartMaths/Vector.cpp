@@ -66,6 +66,10 @@ void Vector::computeCartesian() {
     this->y = (int)(ray*sin(this->theta));
 }
 
+Vector Vector::clone(){
+    return Vector(this->x, this->y);
+}
+
 /** Getters & Setters */
 int Vector::getX() const {
     return x;
