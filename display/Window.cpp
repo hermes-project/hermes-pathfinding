@@ -12,6 +12,5 @@ Window::Window(QWidget* parent, Landmark* landmark) : menu(new Menu(this)), land
     QVBoxLayout* lay=new QVBoxLayout(this);
     lay->setMargin(0);
     lay->addWidget(menu);
-    lay->addWidget(landmark);
     setLayout(lay);
 }

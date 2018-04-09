@@ -76,22 +76,26 @@ int Vector::getX() const {
 }
 void Vector::setX(int x) {
     Vector::x = x;
+    computePolar();
 }
 int Vector::getY() const {
     return y;
 }
 void Vector::setY(int y) {
     Vector::y = y;
+    computePolar();
 }
 double Vector::getRay() const {
     return ray;
 }
 void Vector::setRay(double ray) {
     Vector::ray = ray;
+    computeCartesian();
 }
 double Vector::getTheta() const {
     return theta;
 }
 void Vector::setTheta(double theta) {
     Vector::theta = theta;
+    computeCartesian();
 }

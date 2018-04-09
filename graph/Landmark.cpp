@@ -37,25 +37,6 @@ bool Landmark::isInLandmark(const Vector &vector) {
     return abs(vector.getX()) < size_X/2 && abs(vector.getY()) <size_Y/2;
 }
 
-void Landmark::paintEvent(QPaintEvent *event) {
-    QPainter painter(this);
-    painter.setPen(QPen(Qt::gray, 2, Qt::SolidLine, Qt::RoundCap));
-    painter.drawRect(rect());
-
-    painter.setBrush(Qt::black);
-    painter.setPen(Qt::NoPen);
-    painter.setOpacity(0.4);
-    painter.drawEllipse(0, 0, 100, 100);
-    for(Circle& c:listStaticObstacle){
-        painter.drawEllipse(displayRef(c.getCenter()).getX() - c.getWidth(), displayRef(c.getCenter()).getY() - c.getWidth(), c.getWidth(), c.getWidth());
-    }
-}
-
-Vector Landmark::displayRef(Vector vec) {
-    Vector toReturn = vec.clone();
-    return toReturn+Vector(size_X/2, size_Y/2);
-}
-
 int Landmark::getSize_X() const {
     return size_X;
 }
