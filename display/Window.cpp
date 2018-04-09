@@ -8,9 +8,9 @@
 
 Window::Window(QWidget* parent, Landmark* landmark) : menu(new Menu(this)), landmark(landmark)
 {
-    installEventFilter(this);
     QVBoxLayout* lay=new QVBoxLayout(this);
     lay->setMargin(0);
     lay->addWidget(menu);
+    lay->addWidget(landmarkPanel);
     setLayout(lay);
 }

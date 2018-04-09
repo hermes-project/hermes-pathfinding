@@ -17,6 +17,6 @@ add_executable(Hermes_pathfinding
         graph/Ridge.cpp
         graph/Ridge.h
         smartMaths/Circle.cpp
-        smartMaths/Circle.h display/Window.cpp display/Window.h display/Menu.cpp display/Menu.h graph/Graph.cpp graph/Graph.h graph/Landmark.cpp graph/Landmark.h)
+        smartMaths/Circle.h display/Window.cpp display/Window.h display/Menu.cpp display/Menu.h graph/Graph.cpp graph/Graph.h graph/Landmark.cpp graph/Landmark.h display/LandmarkFrame.cpp display/LandmarkFrame.h)
 
 target_link_libraries(Hermes_pathfinding Qt5::Core Qt5::Widgets)

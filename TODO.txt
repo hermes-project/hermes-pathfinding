@@ -1,0 +1,8 @@
+Interface graphique :   Afficher des obstacles et un graph,
+                        Mapper les boutons pour appeler le pathfinding
+                        Mapper les boutons pour réinitialiser les obstacles
+
+Pathfinding:            Créer le graphe
+                        Mapper les méthodes avec l'interface pour l'afficher
+                        Implémenter Dijktra
+                        Implémenter Astar
