@@ -5,6 +5,9 @@
 #ifndef HERMES_PATHFINDING_WINDOW_H
 #define HERMES_PATHFINDING_WINDOW_H
 
+#define MARGE_X 102
+#define MARGE_Y 170
+
 #include <QtWidgets/QWidget>
 #include "../graph/Landmark.h"
 #include "LandmarkFrame.h"
@@ -14,6 +17,7 @@ public:
     Window(QWidget* parent=0, Landmark* landmark=0);
 
 private:
+    /** Frame affichant l'état du Landmark */
     LandmarkFrame* frame;
 };
 

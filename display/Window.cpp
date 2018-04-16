@@ -7,10 +7,12 @@
 
 Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new LandmarkFrame(this, landmark))
 {
-    this->setFixedSize(landmark->getSize_X() + 100, landmark->getSize_Y() + 200);
+    // Paramètres globaux de la frame
+    this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
     QPalette pal = palette();
     pal.setColor(QPalette::Background, QColor(40, 40, 40));
 
+    // Les boutons à lier avec les bonnes méthodes
     QPushButton* quit = new QPushButton("Quit");
     QPushButton* regenerate = new QPushButton("Regenerate");
     QPushButton* start = new QPushButton("Start");
@@ -21,8 +23,10 @@ Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new
     start->setFont(QFont("Cursive", 11, QFont::Bold));
     stop->setFont(QFont("Cursive", 11, QFont::Bold));
 
+    // Le lien en question !
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
 
+    // Gestion des layouts
     QGridLayout* buttonLayout = new QGridLayout;
     buttonLayout->addWidget(regenerate, 0, 0, Qt::AlignBottom);
     buttonLayout->addWidget(quit, 0, 1, Qt::AlignBottom);

@@ -16,7 +16,12 @@ public:
 
 private:
     Landmark* landmark;
+
+    /** Methode qui permet de dessiner les élements du Landmark */
     void paintEvent(QPaintEvent* event);
+
+    /** Change de référentiel un vecteur pour pouvoir l'afficher correctement */
+    Vector changeToDisplay(const Vector& vector) const;
 };
 
 

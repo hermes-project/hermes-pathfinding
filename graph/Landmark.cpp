@@ -2,24 +2,21 @@
 // Created by rem on 20/03/18.
 //
 
-#include <cstdlib>
-#include <time.h>
 #include <random>
-#include <QPainter>
 #include "Landmark.h"
 
 Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) : size_X(size_X), size_Y(size_Y){
-    initObstacle(nb_obstacle);
     srand(time(NULL));
+    initObstacle(nb_obstacle);
 }
 
 void Landmark::initObstacle(int nb_obstacle) {
+    std::default_random_engine generator;
+    std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION);
     for (int i=0; i<nb_obstacle; i++){
-        int posX = rand()%size_X - size_X/2;
-        int posY = rand()%size_Y - size_Y/2;
-        std::default_random_engine generator;
-        std::normal_distribution<float> ray(50, 20);
-        listStaticObstacle.push_back(Circle(Vector(posX, posY), (int)ray(generator)));
+        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY/2;
+        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY/2;
+        listStaticObstacle.emplace_back(Circle(Vector(posX, posY), (int)ray(generator)));
     }
 }
 
@@ -43,4 +40,8 @@ int Landmark::getSize_X() const {
 
 int Landmark::getSize_Y() const {
     return size_Y;
+}
+
+const std::vector<Circle> &Landmark::getListStaticObstacle() const {
+    return listStaticObstacle;
 }

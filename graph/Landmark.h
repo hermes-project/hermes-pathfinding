@@ -5,10 +5,10 @@
 #ifndef HERMES_PATHFINDING_LANDMARK_H
 #define HERMES_PATHFINDING_LANDMARK_H
 
+#define AVERAGE_RAY 50
+#define STD_DEVIATION 10
+
 #include <vector>
-#include <QtGui/QPaintEvent>
-#include <QtWidgets/QFrame>
-#include "../smartMaths/Ellipse.h"
 #include "Node.h"
 #include "../smartMaths/Circle.h"
 
@@ -20,6 +20,7 @@ public:
     /** Getters & Setters */
     int getSize_X() const;
     int getSize_Y() const;
+    const std::vector<Circle> &getListStaticObstacle() const;
 
 private:
     int size_X;
