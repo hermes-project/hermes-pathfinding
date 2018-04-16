@@ -25,6 +25,7 @@ Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new
 
     // Le lien en question !
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    connect(regenerate, &QPushButton::clicked, frame, &LandmarkFrame::regenerate);
 
     // Gestion des layouts
     QGridLayout* buttonLayout = new QGridLayout;

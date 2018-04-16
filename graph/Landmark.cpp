@@ -11,6 +11,7 @@ Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) : size_X(size_X), si
 }
 
 void Landmark::initObstacle(int nb_obstacle) {
+    this->listStaticObstacle.clear();
     std::default_random_engine generator;
     std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION);
     for (int i=0; i<nb_obstacle; i++){

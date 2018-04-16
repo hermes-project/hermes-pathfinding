@@ -17,6 +17,9 @@ public:
     /** Constructeur */
     Landmark(int size_X, int size_Y, int nb_obstalce);
 
+    /** Initialise des obstacles de taille random */
+    void initObstacle(int nb_obstacle);
+
     /** Getters & Setters */
     int getSize_X() const;
     int getSize_Y() const;
@@ -27,8 +30,6 @@ private:
     int size_Y;
     std::vector<Circle> listStaticObstacle;
 
-    /** Initialise des obstacles de taille random */
-    void initObstacle(int nb_obstacle);
     bool isInObstacle(const Vector& vector);
     bool isInLandmark(const Vector& vector);
 
