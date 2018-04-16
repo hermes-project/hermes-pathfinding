@@ -15,23 +15,25 @@ Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new
     // Les boutons à lier avec les bonnes méthodes
     QPushButton* quit = new QPushButton("Quit");
     QPushButton* regenerate = new QPushButton("Regenerate");
-    QPushButton* start = new QPushButton("Start");
-    QPushButton* stop = new QPushButton("Stop");
+    QPushButton* add = new QPushButton("Add");
+    QPushButton* stop = new QPushButton("Stop (not binded)");
 
+    // On configure le look des boutons
     quit->setFont(QFont("Cursive", 11, QFont::Bold));
     regenerate->setFont(QFont("Cursive", 11, QFont::Bold));;
-    start->setFont(QFont("Cursive", 11, QFont::Bold));
+    add->setFont(QFont("Cursive", 11, QFont::Bold));
     stop->setFont(QFont("Cursive", 11, QFont::Bold));
 
     // Le lien en question !
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
     connect(regenerate, &QPushButton::clicked, frame, &LandmarkFrame::regenerate);
+    connect(add, &QPushButton::clicked, frame, &LandmarkFrame::add);
 
     // Gestion des layouts
     QGridLayout* buttonLayout = new QGridLayout;
     buttonLayout->addWidget(regenerate, 0, 0, Qt::AlignBottom);
     buttonLayout->addWidget(quit, 0, 1, Qt::AlignBottom);
-    buttonLayout->addWidget(start, 1, 0, Qt::AlignBottom);
+    buttonLayout->addWidget(add, 1, 0, Qt::AlignBottom);
     buttonLayout->addWidget(stop, 1, 1, Qt::AlignBottom);
 
     QVBoxLayout* layout = new QVBoxLayout;

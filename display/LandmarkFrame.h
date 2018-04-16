@@ -5,8 +5,6 @@
 #ifndef HERMES_PATHFINDING_LANDMARKFRAME_H
 #define HERMES_PATHFINDING_LANDMARKFRAME_H
 
-#define NB_OBSTACLE 80
-
 #include <QtWidgets/QFrame>
 #include "../graph/Landmark.h"
 
@@ -18,9 +16,13 @@ class LandmarkFrame : public QFrame{
 
 public slots:
     void regenerate(){
-        landmark->initObstacle(NB_OBSTACLE);
+        landmark->reInitObstacle();
         update();
     };
+    void add(){
+        landmark->addObstacle();
+        update();
+    }
 
 public:
     LandmarkFrame(QWidget* parent, Landmark* landmark);
@@ -30,10 +32,12 @@ public:
         delete landmark;
     }
 
-    /** Methode qui permet de dessiner les élements du Landmark */
+    /** Methode qui permet de dessiner les élements du Landmark, c'est la principale méthode à modifier */
     void paintEvent(QPaintEvent* event);
 
 private:
+    /** Objets qui contiennent tout ce qu'il faut afficher */
+    //TODO Ajouter le graph
     Landmark* landmark;
     Vector* pos;
     Vector* aim;
