@@ -16,13 +16,13 @@ Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new
     QPushButton* quit = new QPushButton("Quit");
     QPushButton* regenerate = new QPushButton("Regenerate");
     QPushButton* add = new QPushButton("Add");
-    QPushButton* stop = new QPushButton("Stop (not binded)");
+    QPushButton* empty = new QPushButton("Nani button (not binded)");
 
     // On configure le look des boutons
     quit->setFont(QFont("Cursive", 11, QFont::Bold));
     regenerate->setFont(QFont("Cursive", 11, QFont::Bold));;
     add->setFont(QFont("Cursive", 11, QFont::Bold));
-    stop->setFont(QFont("Cursive", 11, QFont::Bold));
+    empty->setFont(QFont("Cursive", 11, QFont::Bold));
 
     // Le lien en question !
     connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
@@ -31,10 +31,10 @@ Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new
 
     // Gestion des layouts
     QGridLayout* buttonLayout = new QGridLayout;
-    buttonLayout->addWidget(regenerate, 0, 0, Qt::AlignBottom);
-    buttonLayout->addWidget(quit, 0, 1, Qt::AlignBottom);
-    buttonLayout->addWidget(add, 1, 0, Qt::AlignBottom);
-    buttonLayout->addWidget(stop, 1, 1, Qt::AlignBottom);
+    buttonLayout->addWidget(regenerate, 0, 0);
+    buttonLayout->addWidget(quit, 0, 1);
+    buttonLayout->addWidget(add, 1, 0);
+    buttonLayout->addWidget(empty, 1, 1);
 
     QVBoxLayout* layout = new QVBoxLayout;
     layout->addLayout(buttonLayout);
