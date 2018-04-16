@@ -12,11 +12,19 @@ add_executable(Hermes_pathfinding
         smartMaths/maths_lib.h
         smartMaths/Ellipse.cpp
         smartMaths/Ellipse.h
-        graph/Node.cpp
-        graph/Node.h
-        graph/Ridge.cpp
-        graph/Ridge.h
         smartMaths/Circle.cpp
-        smartMaths/Circle.h display/Window.cpp display/Window.h display/Menu.cpp display/Menu.h graph/Graph.cpp graph/Graph.h graph/Landmark.cpp graph/Landmark.h display/LandmarkFrame.cpp display/LandmarkFrame.h)
+        smartMaths/Circle.h
+        display/Window.cpp
+        display/Window.h
+        display/LandmarkFrame.h
+        display/LandmarkFrame.cpp
+        graph/Graph.h
+        graph/Graph.cpp
+        graph/Landmark.h
+        graph/Landmark.cpp
+        graph/Node.h
+        graph/Node.cpp
+        graph/Ridge.h
+        graph/Ridge.cpp)
 
 target_link_libraries(Hermes_pathfinding Qt5::Core Qt5::Widgets)

@@ -6,22 +6,17 @@
 #define HERMES_PATHFINDING_LANDMARKFRAME_H
 
 #include <QtWidgets/QWidget>
-#include <QtWidgets/QLabel>
-#include <QPainter>
-#include <QPaintEvent>
-#include <memory>
-#include <QDebug>
-#include "../graph/Graph.h"
+#include "../graph/Landmark.h"
 
-class LandmarkFrame : public QFrame{
+class LandmarkFrame : public QWidget{
     Q_OBJECT
 
 public:
-    LandmarkFrame(QWidget* parent);
-    void paintEvent(QPaintEvent* event);
+    LandmarkFrame(QWidget* parent, Landmark* landmark);
 
 private:
-    Graph graph;
+    Landmark* landmark;
+    void paintEvent(QPaintEvent* event);
 };
 
 
