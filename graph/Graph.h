@@ -7,6 +7,7 @@
 
 
 #include "Landmark.h"
+#include "../smartMaths/maths_lib.h"
 
 #define PI 3.1415926535
 #define N_NODE 10.0

@@ -30,3 +30,6 @@ int Node::getHeuristic() const {
 void Node::setHeuristic(int heuristic) {
     Node::heuristic = heuristic;
 }
+std::vector<Ridge> Node::getListRidges() {
+    return listRidges;
+}
