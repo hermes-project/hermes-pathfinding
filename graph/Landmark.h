@@ -24,6 +24,8 @@ public:
 
     /** Ajoute des obstacles */
     void addObstacle();
+    bool isInObstacle(const Vector& vector);
+    bool isInLandmark(const Vector& vector);
 
     /** Getters & Setters */
     int getSize_X() const;
@@ -38,9 +40,6 @@ private:
 
     /** Initialise des obstacles de taille random */
     void initObstacle();
-    bool isInObstacle(const Vector& vector);
-    bool isInLandmark(const Vector& vector);
-
 };
 
 #endif //HERMES_PATHFINDING_LANDMARK_H

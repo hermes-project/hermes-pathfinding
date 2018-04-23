@@ -7,6 +7,7 @@
 
 #include <QtWidgets/QFrame>
 #include "../graph/Landmark.h"
+#include "../graph/Graph.h"
 
 class LandmarkFrame : public QFrame{
     Q_OBJECT
@@ -17,15 +18,17 @@ class LandmarkFrame : public QFrame{
 public slots:
     void regenerate(){
         landmark->reInitObstacle();
+        graph->update();
         update();
     };
     void add(){
         landmark->addObstacle();
+        graph->update();
         update();
     }
 
 public:
-    LandmarkFrame(QWidget* parent, Landmark* landmark);
+    LandmarkFrame(QWidget* parent, Landmark* landmark, Graph* graph);
     ~LandmarkFrame(){
         delete pos;
         delete aim;
@@ -39,6 +42,7 @@ private:
     /** Objets qui contiennent tout ce qu'il faut afficher */
     //TODO Ajouter le graph
     Landmark* landmark;
+    Graph* graph;
     Vector* pos;
     Vector* aim;
 

@@ -6,9 +6,9 @@
 #include <QPaintEvent>
 #include "LandmarkFrame.h"
 
-LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark) : QFrame(parent), landmark(landmark) {
+LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) : QFrame(parent), landmark(landmark), graph(graph) {
     // La frame prend toute la place qu'elle peut prendre
-    this->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    this->setFixedSize(landmark->getSize_X(), landmark->getSize_Y());
 
     // Set la couleur de fond
     QPalette pal = palette();
@@ -43,6 +43,14 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
     for(it = listStatic.begin(); it!= listStatic.end(); it++){
         Vector display = changeToDisplay(it->getCenter());
         painter.drawEllipse(display.getX()-it->getWidth()/2, display.getY()-it->getWidth()/2, it->getWidth(), it->getWidth());
+    }
+
+    painter.setBrush(QBrush(QColor(210, 80, 80, 220), Qt::SolidPattern));
+    std::vector<Node>::iterator itNode;
+    std::vector<Node> listNode = graph->getStaticNodes();
+    for(itNode = listNode.begin(); itNode!= listNode.end(); itNode++){
+        Vector display = changeToDisplay(*itNode);
+        painter.drawEllipse(display.getX()-1, display.getY()-1, 2, 2);
     }
 }
 

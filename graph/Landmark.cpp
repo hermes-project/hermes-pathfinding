@@ -14,8 +14,8 @@ void Landmark::initObstacle() {
     std::default_random_engine generator;
     std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION_RAY);
     for (int i=0; i<init_nb_Obstacle; i++){
-        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY/2;
-        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY/2;
+        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
+        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
         listStaticObstacle.emplace_back(Circle(Vector(posX, posY), (int)ray(generator)));
     }
 }
@@ -30,8 +30,8 @@ void Landmark::addObstacle() {
     std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION_RAY);
     std::normal_distribution<float> nb_Obstacle(AVERAGE_ADDED_OBSTACLE, STD_DEVIATION_ADDED_OBSTACLE);
     for (int i=0; i<(int)nb_Obstacle(generator); i++){
-        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY/2;
-        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY/2;
+        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
+        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
         listStaticObstacle.emplace_back(Circle(Vector(posX, posY), (int)ray(generator)));
     }
 }

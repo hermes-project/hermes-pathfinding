@@ -5,10 +5,9 @@
 #include <QtWidgets/QtWidgets>
 #include "Window.h"
 
-Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new LandmarkFrame(this, landmark))
+Window::Window(QWidget* parent, Landmark* landmark) : QWidget(parent), frame(new LandmarkFrame(this, landmark, new Graph(landmark)))
 {
     // Paramètres globaux de la frame
-    this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
     QPalette pal = palette();
     pal.setColor(QPalette::Background, QColor(40, 40, 40));
 
