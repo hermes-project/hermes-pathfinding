@@ -9,6 +9,9 @@
 #include "../graph/Landmark.h"
 #include "../graph/Graph.h"
 
+#define MARGE_X 20
+#define MARGE_Y 20
+
 class LandmarkFrame : public QFrame{
     Q_OBJECT
 

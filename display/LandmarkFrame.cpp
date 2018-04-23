@@ -8,7 +8,7 @@
 
 LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) : QFrame(parent), landmark(landmark), graph(graph) {
     // La frame prend toute la place qu'elle peut prendre
-    this->setFixedSize(landmark->getSize_X(), landmark->getSize_Y());
+    this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
 
     // Set la couleur de fond
     QPalette pal = palette();
@@ -31,11 +31,23 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
 
     // Affichage de l'origine et des axes
     Vector origin(0,0);
+    Vector ul(-landmark->getSize_X()/2, -landmark->getSize_Y()/2);
+    Vector ur(landmark->getSize_X()/2, -landmark->getSize_Y()/2);
+    Vector dl(-landmark->getSize_X()/2, landmark->getSize_Y()/2);
+    Vector dr(landmark->getSize_X()/2, landmark->getSize_Y()/2);
     Vector originDisplay = changeToDisplay(origin);
+    Vector ulDisplay = changeToDisplay(ul);
+    Vector urDisplay = changeToDisplay(ur);
+    Vector dlDisplay = changeToDisplay(dl);
+    Vector drDisplay = changeToDisplay(dr);
 
-    painter.drawLine(940, 0, 940, 1000);
-    painter.drawLine(0, 450, 2000, 450);
+    painter.drawLine(landmark->getSize_X()/2, 0, landmark->getSize_X()/2, 1000);
+    painter.drawLine(0, landmark->getSize_Y()/2, 2000, landmark->getSize_Y()/2);
     painter.drawEllipse(originDisplay.getX()-5, originDisplay.getY()-5, 10, 10);
+    painter.drawEllipse(ulDisplay.getX()-5, ulDisplay.getY()-5, 10, 10);
+    painter.drawEllipse(urDisplay.getX()-5, urDisplay.getY()-5, 10, 10);
+    painter.drawEllipse(dlDisplay.getX()-5, dlDisplay.getY()-5, 10, 10);
+    painter.drawEllipse(drDisplay.getX()-5, drDisplay.getY()-5, 10, 10);
 
     painter.setBrush(QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern));
     std::vector<Circle>::iterator it;
@@ -80,5 +92,5 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 Vector LandmarkFrame::changeToDisplay(const Vector &vector) const{
-    return Vector(vector.getX() + 940, landmark->getSize_Y() - (vector.getY() + 350));
+    return Vector(vector.getX() + landmark->getSize_X()/2 + MARGE_X/2, landmark->getSize_Y()/2 - (vector.getY()) + MARGE_Y/2);
 }

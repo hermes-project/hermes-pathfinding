@@ -6,7 +6,7 @@
 
 Graph::Graph(Landmark *landmark) : landmark(landmark){
     generateNodes();
-    // generateRidges();
+    generateRidges();
 }
 
 void Graph::generateNodes() {
@@ -50,7 +50,7 @@ void Graph::generateRidges() {
 void Graph::update(){
     staticNodes.clear();
     generateNodes();
-    // generateRidges();
+    generateRidges();
 }
 
 const std::vector<Node> &Graph::getStaticNodes() const {
