@@ -23,8 +23,6 @@ add_executable(Hermes_pathfinding
         graph/Landmark.h
         graph/Landmark.cpp
         graph/Node.h
-        graph/Node.cpp
-        graph/Ridge.h
-        graph/Ridge.cpp)
+        graph/Node.cpp)
 
 target_link_libraries(Hermes_pathfinding Qt5::Core Qt5::Widgets)
