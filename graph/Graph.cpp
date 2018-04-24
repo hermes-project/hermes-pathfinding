@@ -28,20 +28,20 @@ void Graph::genNodeArnd(Circle &circle) {
 
 void Graph::generateRidges() {
     std::vector<Node>::iterator it1;
-    std::vector<Node> listNode=staticNodes;
-    for (it1=listNode.begin();it1!=listNode.end();it1++){
-        std::vector<Node>::iterator it2;
-        for (it2=it1;it2!=listNode.end();it2++){
-            std::vector<Circle>::iterator obstacle;
+    std::vector<Node>::iterator it2;
+    std::vector<Circle>::iterator obstacle;
+    for (it1 = staticNodes.begin(); it1 != staticNodes.end(); it1++){
+        for (it2 = it1; it2 != staticNodes.end(); it2++){
             std::vector<Circle> staticObstacles = landmark->getListStaticObstacle();
             bool aucunObstacle=true;
             for (obstacle = staticObstacles.begin(); obstacle != staticObstacles.end(); obstacle++){
-                if (intersect(*it1,*it2,*obstacle)){
+                if (intersect((Vector)(*it1),(Vector)(*it2),*obstacle)){
                     aucunObstacle=false;
                 }
             }
             if (aucunObstacle){
-                it1->getListRidges().emplace_back(Ridge (*it1,*it2));
+                std::pair<Node*, int> pair(&(*it2), it1->distanceTo(*it2));
+                (it1->getListNeighbour()).emplace(pair);
             }
         }
     }
@@ -53,6 +53,6 @@ void Graph::update(){
     generateRidges();
 }
 
-const std::vector<Node> &Graph::getStaticNodes() const {
+std::vector<Node> &Graph::getStaticNodes(){
     return staticNodes;
 }

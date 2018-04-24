@@ -30,6 +30,7 @@ int Node::getHeuristic() const {
 void Node::setHeuristic(int heuristic) {
     Node::heuristic = heuristic;
 }
-std::vector<Ridge> Node::getListRidges() {
-    return listRidges;
+
+std::map<Node*, int> &Node::getListNeighbour(){
+    return listNeighbour;
 }

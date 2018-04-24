@@ -36,6 +36,7 @@ public:
         delete pos;
         delete aim;
         delete landmark;
+        delete graph;
     }
 
     /** Methode qui permet de dessiner les élements du Landmark, c'est la principale méthode à modifier */

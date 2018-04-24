@@ -41,8 +41,8 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
     Vector dlDisplay = changeToDisplay(dl);
     Vector drDisplay = changeToDisplay(dr);
 
-    painter.drawLine(landmark->getSize_X()/2, 0, landmark->getSize_X()/2, 1000);
-    painter.drawLine(0, landmark->getSize_Y()/2, 2000, landmark->getSize_Y()/2);
+    painter.drawLine(landmark->getSize_X()/2 + MARGE_X/2, 0, landmark->getSize_X()/2 + MARGE_X/2, 1000);
+    painter.drawLine(0, landmark->getSize_Y()/2 + MARGE_Y/2, 2000, landmark->getSize_Y()/2 + MARGE_Y/2);
     painter.drawEllipse(originDisplay.getX()-5, originDisplay.getY()-5, 10, 10);
     painter.drawEllipse(ulDisplay.getX()-5, ulDisplay.getY()-5, 10, 10);
     painter.drawEllipse(urDisplay.getX()-5, urDisplay.getY()-5, 10, 10);
@@ -59,10 +59,14 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
 
     painter.setBrush(QBrush(QColor(210, 80, 80, 220), Qt::SolidPattern));
     std::vector<Node>::iterator itNode;
-    std::vector<Node> listNode = graph->getStaticNodes();
-    for(itNode = listNode.begin(); itNode!= listNode.end(); itNode++){
+    std::map<Node*, int>::iterator itNodeN;
+    for(itNode = (graph->getStaticNodes()).begin(); itNode!= (graph->getStaticNodes()).end(); itNode++){
         Vector display = changeToDisplay(*itNode);
         painter.drawEllipse(display.getX()-1, display.getY()-1, 2, 2);
+        for(itNodeN = (itNode->getListNeighbour()).begin(); itNodeN != (itNode->getListNeighbour()).end(); itNodeN++){
+            Vector displayN = changeToDisplay(*(itNodeN->first));
+            painter.drawLine(display.getX(), display.getY(), displayN.getX(), displayN.getY());
+        }
     }
 }
 

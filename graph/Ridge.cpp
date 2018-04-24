@@ -5,22 +5,22 @@
 #include "Ridge.h"
 
 /** Constructeur */
-Ridge::Ridge(Node &node0, Node &node1) : node0(node0), node1(node1){
-    this->cost = node0.distanceTo(node1);
+Ridge::Ridge(Node& nodeF, Node& nodeS) : nodeF(nodeF), nodeS(nodeS){
+    this->cost = nodeF.distanceTo(nodeS);
 }
 
 /** Getters & Setters */
-Node& Ridge::getNode0() const {
-    return node0;
+Node& Ridge::getNodeF() const {
+    return nodeF;
 }
-void Ridge::setNode0(Node& node0) {
-    Ridge::node0 = node0;
+void Ridge::setNodeF(Node& nodeF) {
+    Ridge::nodeF = nodeF;
 }
-Node& Ridge::getNode1() const {
-    return node1;
+Node& Ridge::getNodeS() const {
+    return nodeS;
 }
-void Ridge::setNode1(Node& node1) {
-    Ridge::node1 = node1;
+void Ridge::setNodeS(Node& nodeS) {
+    Ridge::nodeS = nodeS;
 }
 int Ridge::getCost() const {
     return cost;

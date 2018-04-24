@@ -5,13 +5,12 @@
 #ifndef HERMES_PATHFINDING_GRAPH_H
 #define HERMES_PATHFINDING_GRAPH_H
 
-
 #include "Landmark.h"
 #include "../smartMaths/maths_lib.h"
 
 #define PI 3.1415926535
-#define N_NODE 10.0
-#define MARGE_RAY 15.0
+#define N_NODE 20.0
+#define MARGE_RAY 12.0
 
 class Graph {
 public:
@@ -26,7 +25,7 @@ public:
     void update();
 
     /** Getters & Setters */
-    const std::vector<Node> &getStaticNodes() const;
+    std::vector<Node> &getStaticNodes();
 
 private:
     Landmark* landmark;

@@ -6,8 +6,8 @@
 #define HERMES_PATHFINDING_NODE_H
 
 #include <vector>
+#include <map>
 #include "../smartMaths/Vector.h"
-#include "Ridge.h"
 
 // TODO : rajouter la liste des arrêtes (ou un HashMap avec pointeur de Noeud voisin et coût associé)
 class Node : public Vector{
@@ -26,15 +26,14 @@ public:
     void setCostFromBegin(int costFromBegin);
     int getHeuristic() const;
     void setHeuristic(int heuristic);
-    std::vector <Ridge > getListRidges();
-
+    std::map<Node *, int> &getListNeighbour();
 
 private:
     /** Informations propres au noeud */
     Node* predecessor;
     int costFromBegin;
     int heuristic;
-    std::vector <Ridge> listRidges;
+    std::map<Node*, int> listNeighbour;
 };
 
 
