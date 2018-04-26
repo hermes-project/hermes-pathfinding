@@ -5,9 +5,11 @@
 #ifndef HERMES_PATHFINDING_VECTOR_H
 #define HERMES_PATHFINDING_VECTOR_H
 
+#include <cmath>
+#include <algorithm>
+
 /** Classe qui implément les vecteurs en coordonnées polaires et cartésiennes */
-class Vector
-{
+class Vector {
 public:
     /** Constructeurs */
     Vector(int x, int y);

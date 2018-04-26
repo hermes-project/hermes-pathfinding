@@ -2,7 +2,6 @@
 // Created by rem on 20/03/18.
 //
 
-#include <random>
 #include "Landmark.h"
 
 Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) : size_X(size_X), size_Y(size_Y), init_nb_Obstacle(nb_obstacle){
@@ -16,7 +15,7 @@ void Landmark::initObstacle() {
     for (int i=0; i<init_nb_Obstacle; i++){
         int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
         int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
-        listStaticObstacle.emplace_back(Circle(Vector(posX, posY), (int)ray(generator)));
+        listStaticObstacle.emplace_back(Vector(posX, posY), (int)ray(generator));
     }
 }
 
@@ -32,7 +31,7 @@ void Landmark::addObstacle() {
     for (int i=0; i<(int)nb_Obstacle(generator); i++){
         int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
         int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
-        listStaticObstacle.emplace_back(Circle(Vector(posX, posY), (int)ray(generator)));
+        listStaticObstacle.emplace_back(Vector(posX, posY), (int)ray(generator));
     }
 }
 
@@ -58,6 +57,6 @@ int Landmark::getSize_Y() const {
     return size_Y;
 }
 
-const std::vector<Circle> &Landmark::getListStaticObstacle() const {
+std::vector<Circle> &Landmark::getListStaticObstacle() {
     return listStaticObstacle;
 }

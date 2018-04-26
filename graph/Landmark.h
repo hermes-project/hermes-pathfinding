@@ -11,12 +11,13 @@
 #define STD_DEVIATION_ADDED_OBSTACLE 5
 
 #include <vector>
+#include <random>
 #include "Node.h"
 #include "../smartMaths/Circle.h"
 
 class Landmark {
 public:
-    /** Constructeur */
+    /** Constructeur & Destructeur */
     Landmark(int size_X, int size_Y, int nb_obstalce);
 
     /** Ré-initialise les obstacles */
@@ -30,7 +31,7 @@ public:
     /** Getters & Setters */
     int getSize_X() const;
     int getSize_Y() const;
-    const std::vector<Circle> &getListStaticObstacle() const;
+    std::vector<Circle> &getListStaticObstacle();
 
 private:
     int size_X;

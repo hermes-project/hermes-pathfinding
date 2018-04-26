@@ -14,8 +14,11 @@
 
 class Graph {
 public:
-    /** Constructeur */
+    /** Constructeur & Destructeur */
     Graph(Landmark* landmark);
+    ~Graph(){
+        delete landmark;
+    }
 
     /** Méthodes d'intialisation du graphe */
     void init(Vector& startP, Vector& aimP);

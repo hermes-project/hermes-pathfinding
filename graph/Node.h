@@ -12,7 +12,7 @@
 // TODO : rajouter la liste des arrêtes (ou un HashMap avec pointeur de Noeud voisin et coût associé)
 class Node : public Vector{
 public:
-    /** Constructeurs */
+    /** Constructeurs & Destructeur */
     Node(int x, int y);
     Node(double ray, double theta);
 

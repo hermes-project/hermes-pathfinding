@@ -6,6 +6,8 @@
 #define HERMES_PATHFINDING_LANDMARKFRAME_H
 
 #include <QtWidgets/QFrame>
+#include <QPainter>
+#include <QPaintEvent>
 #include "../graph/Landmark.h"
 #include "../graph/Graph.h"
 
@@ -35,20 +37,28 @@ public:
     ~LandmarkFrame(){
         delete pos;
         delete aim;
-        delete landmark;
         delete graph;
     }
 
     /** Methode qui permet de dessiner les élements du Landmark, c'est la principale méthode à modifier */
-    void paintEvent(QPaintEvent* event);
+    void paintEvent(QPaintEvent* event) override ;
 
 private:
     /** Objets qui contiennent tout ce qu'il faut afficher */
-    //TODO Ajouter le graph
     Landmark* landmark;
     Graph* graph;
     Vector* pos;
     Vector* aim;
+
+    /** Constantes d'affichage */
+    Vector ORIGIN;
+    Vector UL;
+    Vector UR;
+    Vector DL;
+    Vector DR;
+
+    QBrush brush;
+    QPen pen;
 
     /** Change de référentiel un vecteur pour pouvoir l'afficher correctement */
     Vector changeToDisplay(const Vector& vector) const;

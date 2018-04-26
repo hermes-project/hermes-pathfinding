@@ -2,8 +2,6 @@
 // Created by rem on 09/04/18.
 //
 
-#include <QtGui/QPainter>
-#include <QPaintEvent>
 #include "LandmarkFrame.h"
 
 LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) : QFrame(parent), landmark(landmark), graph(graph) {
@@ -12,7 +10,7 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) 
 
     // Set la couleur de fond
     QPalette pal = palette();
-    pal.setColor(QPalette::Background, QColor(50, 60, 70));
+    pal.setColor(QPalette::Background, QColor(60, 70, 80));
     this->setAutoFillBackground(true);
     this->setPalette(pal);
 
@@ -22,34 +20,29 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) 
     // Initialisation de variables...
     pos = NULL;
     aim = NULL;
+    ORIGIN = changeToDisplay(Vector(0,0));
+    UL = changeToDisplay(Vector(-landmark->getSize_X()/2, -landmark->getSize_Y()/2));
+    UR = changeToDisplay(Vector(landmark->getSize_X()/2, -landmark->getSize_Y()/2));
+    DL = changeToDisplay(Vector(-landmark->getSize_X()/2, landmark->getSize_Y()/2));
+    DR = changeToDisplay(Vector(landmark->getSize_X()/2, landmark->getSize_Y()/2));
+    brush = QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern);
+    pen = QPen(QColor(100, 20, 20, 250), 0.3);
 }
 
 void LandmarkFrame::paintEvent(QPaintEvent *event) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(QColor(255, 255, 255, 180));
-
-    // Affichage de l'origine et des axes
-    Vector origin(0,0);
-    Vector ul(-landmark->getSize_X()/2, -landmark->getSize_Y()/2);
-    Vector ur(landmark->getSize_X()/2, -landmark->getSize_Y()/2);
-    Vector dl(-landmark->getSize_X()/2, landmark->getSize_Y()/2);
-    Vector dr(landmark->getSize_X()/2, landmark->getSize_Y()/2);
-    Vector originDisplay = changeToDisplay(origin);
-    Vector ulDisplay = changeToDisplay(ul);
-    Vector urDisplay = changeToDisplay(ur);
-    Vector dlDisplay = changeToDisplay(dl);
-    Vector drDisplay = changeToDisplay(dr);
+    painter.setPen(pen);
+    painter.setBrush(brush);
 
     painter.drawLine(landmark->getSize_X()/2 + MARGE_X/2, 0, landmark->getSize_X()/2 + MARGE_X/2, 1000);
     painter.drawLine(0, landmark->getSize_Y()/2 + MARGE_Y/2, 2000, landmark->getSize_Y()/2 + MARGE_Y/2);
-    painter.drawEllipse(originDisplay.getX()-5, originDisplay.getY()-5, 10, 10);
-    painter.drawEllipse(ulDisplay.getX()-5, ulDisplay.getY()-5, 10, 10);
-    painter.drawEllipse(urDisplay.getX()-5, urDisplay.getY()-5, 10, 10);
-    painter.drawEllipse(dlDisplay.getX()-5, dlDisplay.getY()-5, 10, 10);
-    painter.drawEllipse(drDisplay.getX()-5, drDisplay.getY()-5, 10, 10);
+    painter.drawEllipse(ORIGIN.getX()-5, ORIGIN.getY()-5, 10, 10);
+    painter.drawEllipse(UL.getX()-5, UL.getY()-5, 10, 10);
+    painter.drawEllipse(UR.getX()-5, UR.getY()-5, 10, 10);
+    painter.drawEllipse(DL.getX()-5, DL.getY()-5, 10, 10);
+    painter.drawEllipse(DR.getX()-5, DR.getY()-5, 10, 10);
 
-    painter.setBrush(QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern));
     std::vector<Circle>::iterator it;
     std::vector<Circle> listStatic = landmark->getListStaticObstacle();
     for(it = listStatic.begin(); it!= listStatic.end(); it++){
@@ -57,7 +50,6 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
         painter.drawEllipse(display.getX()-it->getWidth()/2, display.getY()-it->getWidth()/2, it->getWidth(), it->getWidth());
     }
 
-    painter.setBrush(QBrush(QColor(210, 80, 80, 220), Qt::SolidPattern));
     std::vector<Node>::iterator itNode;
     std::map<Node*, int>::iterator itNodeN;
     for(itNode = (graph->getStaticNodes()).begin(); itNode!= (graph->getStaticNodes()).end(); itNode++){
@@ -74,7 +66,7 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
     if(event->button()==Qt::MouseButton::LeftButton){
         int posX = event->x() - 940;
         int posY = landmark->getSize_Y() - event->y() - 350;
-        if(pos == NULL){
+        if(!pos){
             pos = new Vector(posX, posY);
         }
         else{
@@ -85,7 +77,7 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
     else if(event->button()==Qt::MouseButton::RightButton){
         int posX = event->x() - 940;
         int posY = landmark->getSize_Y() - event->y() - 350;
-        if(aim == NULL){
+        if(!aim){
             aim = new Vector(posX, posY);
         }
         else{

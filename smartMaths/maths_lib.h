@@ -27,7 +27,7 @@ static double modulo(double value, double module){
  * @param vector0 vector1 les vecteurs qui délimitent le segment
  * @param circle le cercle
  */
-static bool intersect(const Vector vector0, const Vector vector1, const Circle circle){
+static bool intersect(const Vector& vector0, const Vector& vector1, const Circle& circle){
     // TODO : faire un dessin
     /*
     Vector segment = vector1-vector0;

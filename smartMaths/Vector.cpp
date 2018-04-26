@@ -2,8 +2,6 @@
 // Created by rem on 21/02/18.
 //
 
-#include <cmath>
-#include <algorithm>
 #include "Vector.h"
 
 /** Constructeur en coordonnées cartésiennes */
@@ -23,12 +21,12 @@ Vector::Vector() : x(0), y(0){
 
 /** Retourne un nouvel objet de type vecteur, somme des deux vecteurs */
 Vector Vector:: operator+(const Vector& other) const{
-    return Vector(this->x + other.x, this->y + other.y);
+    return {this->x + other.x, this->y + other.y};
 }
 
 /** Retourne un nouvel objet de type vecteur, soustraction des deux vecteurs */
 Vector Vector:: operator-(const Vector& other) const{
-    return Vector(this->x - other.x, this->y - other.y);
+    return {this->x - other.x, this->y - other.y};
 }
 
 /** Retourne la distance entre deux points */
@@ -67,7 +65,7 @@ void Vector::computeCartesian() {
 }
 
 Vector Vector::clone(){
-    return Vector(this->x, this->y);
+    return {this->x, this->y};
 }
 
 /** Getters & Setters */
