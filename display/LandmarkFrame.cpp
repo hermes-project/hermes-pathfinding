@@ -4,7 +4,7 @@
 
 #include "LandmarkFrame.h"
 
-LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) : QFrame(parent), landmark(landmark), graph(graph) {
+LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) : QFrame(parent), landmark(graph->getLandmark()), graph(graph) {
     // La frame prend toute la place qu'elle peut prendre
     this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
 
@@ -22,7 +22,7 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) 
     aim = nullptr;
     ORIGIN = changeToDisplay(Vector(0,0));
     UL = changeToDisplay(landmark->getUL());
-    UR = changeToDisplay(landmark->getDL());
+    UR = changeToDisplay(landmark->getUR());
     DL = changeToDisplay(landmark->getDL());
     DR = changeToDisplay(landmark->getDR());
     brush = QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern);

@@ -51,3 +51,7 @@ void Graph::update(){
 std::vector<Node> &Graph::getStaticNodes(){
     return staticNodes;
 }
+
+Landmark *Graph::getLandmark() const {
+    return landmark;
+}

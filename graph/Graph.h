@@ -29,6 +29,7 @@ public:
 
     /** Getters & Setters */
     std::vector<Node> &getStaticNodes();
+    Landmark *getLandmark() const;
 
 private:
     Landmark* landmark;

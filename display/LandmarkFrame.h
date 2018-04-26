@@ -33,7 +33,7 @@ public slots:
     }
 
 public:
-    LandmarkFrame(QWidget* parent, Landmark* landmark, Graph* graph);
+    LandmarkFrame(QWidget* parent, Graph* graph);
     ~LandmarkFrame() override {
         delete pos;
         delete aim;
