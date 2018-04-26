@@ -9,7 +9,6 @@
 #include <map>
 #include "../smartMaths/Vector.h"
 
-// TODO : rajouter la liste des arrêtes (ou un HashMap avec pointeur de Noeud voisin et coût associé)
 class Node : public Vector{
 public:
     /** Constructeurs & Destructeur */

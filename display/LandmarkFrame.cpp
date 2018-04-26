@@ -18,15 +18,15 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Landmark* landmark, Graph* graph) 
     installEventFilter(this);
 
     // Initialisation de variables...
-    pos = NULL;
-    aim = NULL;
+    pos = nullptr;
+    aim = nullptr;
     ORIGIN = changeToDisplay(Vector(0,0));
     UL = changeToDisplay(Vector(-landmark->getSize_X()/2, -landmark->getSize_Y()/2));
     UR = changeToDisplay(Vector(landmark->getSize_X()/2, -landmark->getSize_Y()/2));
     DL = changeToDisplay(Vector(-landmark->getSize_X()/2, landmark->getSize_Y()/2));
     DR = changeToDisplay(Vector(landmark->getSize_X()/2, landmark->getSize_Y()/2));
     brush = QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern);
-    pen = QPen(QColor(100, 20, 20, 250), 0.3);
+    pen = QPen(QColor(255, 40, 20, 250), 0.2);
 }
 
 void LandmarkFrame::paintEvent(QPaintEvent *event) {
@@ -88,5 +88,5 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
 }
 
 Vector LandmarkFrame::changeToDisplay(const Vector &vector) const{
-    return Vector(vector.getX() + landmark->getSize_X()/2 + MARGE_X/2, landmark->getSize_Y()/2 - (vector.getY()) + MARGE_Y/2);
+    return {vector.getX() + landmark->getSize_X()/2 + MARGE_X/2, landmark->getSize_Y()/2 - (vector.getY()) + MARGE_Y/2};
 }

@@ -11,7 +11,7 @@
 
 class Window : public QWidget{
 public:
-    Window(QWidget* parent=0, Landmark* landmark=0);
+    Window(QWidget* parent= nullptr, Landmark* landmark= nullptr);
 
 private:
     /** Frame affichant l'état du Landmark */

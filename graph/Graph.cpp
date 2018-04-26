@@ -32,14 +32,8 @@ void Graph::generateRidges() {
     std::vector<Circle>::iterator obstacle;
     for (it1 = staticNodes.begin(); it1 != staticNodes.end(); it1++){
         for (it2 = it1; it2 != staticNodes.end(); it2++){
-            bool aucunObstacle=true;
-            for (obstacle = (landmark->getListStaticObstacle()).begin(); obstacle != (landmark->getListStaticObstacle()).end(); obstacle++){
-                if (intersect((*it1),(*it2),*obstacle)){
-                    aucunObstacle=false;
-                }
-            }
-            if (aucunObstacle){
-                (it1->getListNeighbour()).emplace(&(*it2), it1->distanceTo(*it2));
+            if (it1 != it2 && !landmark->intersectAnyObstacle(*it1, *it2)){
+                it1->createLink(&(*it2));
             }
         }
     }

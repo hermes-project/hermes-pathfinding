@@ -29,6 +29,7 @@ static double modulo(double value, double module){
  */
 static bool intersect(const Vector& vector0, const Vector& vector1, const Circle& circle){
     // TODO : faire un dessin
+
     /*
     Vector segment = vector1-vector0;
     Vector zeroToCenter = circle.getCenter()-vector0;
@@ -43,6 +44,7 @@ static bool intersect(const Vector& vector0, const Vector& vector1, const Circle
     return !((circle.getCenter().getY()*vector0.getX() < vector0.getY() * circle.getCenter().getX()) && (circle.getCenter().getY()*vector0.getX() < vector1.getY() * circle.getCenter().getX())
              || (circle.getCenter().getY()*vector0.getX() > vector0.getY() * circle.getCenter().getX()) && (circle.getCenter().getY()*vector1.getX() > vector1.getY()*circle.getCenter().getX()));
     */
+
     double area = ((double)circle.getCenter().getX() - (double)vector0.getX())*((double)vector1.getY() - (double)vector0.getY()) - ((double)circle.getCenter().getY() - (double)vector0.getY())*((double)vector1.getX() - (double)vector0.getX());
     double distA = ((double)vector0.getX() - (double)circle.getCenter().getX())*((double)vector0.getX() - (double)circle.getCenter().getX()) + ((double)vector0.getY() - (double)circle.getCenter().getY())*((double)vector0.getY() - (double)circle.getCenter().getY());
     double distB = ((double)vector1.getX() - (double)circle.getCenter().getX())*((double)vector1.getX() - (double)circle.getCenter().getX()) + ((double)vector1.getY() - (double)circle.getCenter().getY())*((double)vector1.getY() - (double)circle.getCenter().getY());

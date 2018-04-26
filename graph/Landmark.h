@@ -5,8 +5,8 @@
 #ifndef HERMES_PATHFINDING_LANDMARK_H
 #define HERMES_PATHFINDING_LANDMARK_H
 
-#define AVERAGE_RAY 50
-#define STD_DEVIATION_RAY 10
+#define AVERAGE_RAY 70
+#define STD_DEVIATION_RAY 15
 #define AVERAGE_ADDED_OBSTACLE 10
 #define STD_DEVIATION_ADDED_OBSTACLE 5
 
@@ -14,6 +14,7 @@
 #include <random>
 #include "Node.h"
 #include "../smartMaths/Circle.h"
+#include "../smartMaths/maths_lib.h"
 
 class Landmark {
 public:
@@ -27,6 +28,7 @@ public:
     void addObstacle();
     bool isInObstacle(const Vector& vector);
     bool isInLandmark(const Vector& vector);
+    bool intersectAnyObstacle(const Vector& vector0, const Vector& vector1);
 
     /** Getters & Setters */
     int getSize_X() const;

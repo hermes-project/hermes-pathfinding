@@ -6,17 +6,7 @@
 int main(int argc, char** argv) {
 
     QApplication app(argc, argv);
-    Window window(NULL, new Landmark(1800, 800, 10));
+    Window window(nullptr, new Landmark(1800, 800, 50));
     window.show();
     return app.exec();
-
-    /*
-    Landmark* landmark = new Landmark(2000, 1000, 100);
-    Graph graph(landmark);
-
-    landmark->addObstacle();
-    graph.update();
-     */
-
-    return EXIT_SUCCESS;
 }

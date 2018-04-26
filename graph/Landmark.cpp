@@ -49,6 +49,16 @@ bool Landmark::isInLandmark(const Vector &vector) {
     return abs(vector.getX()) < size_X/2 && abs(vector.getY()) <size_Y/2;
 }
 
+bool Landmark::intersectAnyObstacle(const Vector &vector0, const Vector &vector1) {
+    std::vector<Circle>::iterator obstacle;
+    for (obstacle = listStaticObstacle.begin(); obstacle != listStaticObstacle.end(); obstacle++){
+        if (intersect(vector0, vector1, *obstacle)){
+            return true;
+        }
+    }
+    return false;
+}
+
 int Landmark::getSize_X() const {
     return size_X;
 }

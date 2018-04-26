@@ -15,7 +15,7 @@
 class Graph {
 public:
     /** Constructeur & Destructeur */
-    Graph(Landmark* landmark);
+    explicit Graph(Landmark* landmark);
     ~Graph(){
         delete landmark;
     }

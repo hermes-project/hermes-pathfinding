@@ -18,7 +18,7 @@ class LandmarkFrame : public QFrame{
     Q_OBJECT
 
     /** Evènement de souris ! */
-    void mouseReleaseEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event) override ;
 
 public slots:
     void regenerate(){
@@ -34,7 +34,7 @@ public slots:
 
 public:
     LandmarkFrame(QWidget* parent, Landmark* landmark, Graph* graph);
-    ~LandmarkFrame(){
+    ~LandmarkFrame() override {
         delete pos;
         delete aim;
         delete graph;
