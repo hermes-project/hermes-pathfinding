@@ -15,6 +15,10 @@ void Graph::generateNodes() {
     for (it = staticObstacles.begin(); it != staticObstacles.end(); it++){
         genNodeArnd(*it);
     }
+    staticNodes.emplace_back(landmark->getUL().getX(), landmark->getUL().getY());
+    staticNodes.emplace_back(landmark->getUR().getX(), landmark->getUR().getY());
+    staticNodes.emplace_back(landmark->getDL().getX(), landmark->getDL().getY());
+    staticNodes.emplace_back(landmark->getDR().getX(), landmark->getDR().getY());
 }
 
 void Graph::genNodeArnd(Circle &circle) {
@@ -29,7 +33,6 @@ void Graph::genNodeArnd(Circle &circle) {
 void Graph::generateRidges() {
     std::vector<Node>::iterator it1;
     std::vector<Node>::iterator it2;
-    std::vector<Circle>::iterator obstacle;
     for (it1 = staticNodes.begin(); it1 != staticNodes.end(); it1++){
         for (it2 = it1; it2 != staticNodes.end(); it2++){
             if (it1 != it2 && !landmark->intersectAnyObstacle(*it1, *it2)){

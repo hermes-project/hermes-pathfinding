@@ -34,12 +34,20 @@ public:
     int getSize_X() const;
     int getSize_Y() const;
     std::vector<Circle> &getListStaticObstacle();
+    const Vector &getUL() const;
+    const Vector &getUR() const;
+    const Vector &getDL() const;
+    const Vector &getDR() const;
 
 private:
     int size_X;
     int size_Y;
     int init_nb_Obstacle;
     std::vector<Circle> listStaticObstacle;
+    Vector UL;
+    Vector UR;
+    Vector DL;
+    Vector DR;
 
     /** Initialise des obstacles de taille random */
     void initObstacle();

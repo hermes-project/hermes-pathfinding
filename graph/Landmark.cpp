@@ -5,8 +5,12 @@
 #include "Landmark.h"
 
 Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) : size_X(size_X), size_Y(size_Y), init_nb_Obstacle(nb_obstacle){
-    srand(time(NULL));
+    srand(time(nullptr));
     initObstacle();
+    UL = Vector(-size_X/2, size_Y/2);
+    UR = Vector(size_X/2, size_Y/2);
+    DL = Vector(-size_X/2, -size_Y/2);
+    DR = Vector(size_X/2, -size_Y/2);
 }
 
 void Landmark::initObstacle() {
@@ -69,4 +73,20 @@ int Landmark::getSize_Y() const {
 
 std::vector<Circle> &Landmark::getListStaticObstacle() {
     return listStaticObstacle;
+}
+
+const Vector &Landmark::getUL() const {
+    return UL;
+}
+
+const Vector &Landmark::getUR() const {
+    return UR;
+}
+
+const Vector &Landmark::getDL() const {
+    return DL;
+}
+
+const Vector &Landmark::getDR() const {
+    return DR;
 }
