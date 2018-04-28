@@ -14,13 +14,13 @@ public:
     /** Constructeurs */
     Vector(int x, int y);
     Vector(double ray, double theta);
+    Vector(const Vector& vector);
     Vector();
 
     /** Méthodes de base */
     Vector operator+(const Vector& other)const;
     Vector operator-(const Vector& other)const;
     int distanceTo(const Vector& other)const;
-    Vector clone();
 
     /** Getters & Setters */
     int getX() const;

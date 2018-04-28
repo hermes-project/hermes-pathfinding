@@ -4,37 +4,36 @@
 
 #include "Vector.h"
 
-/** Constructeur en coordonnées cartésiennes */
 Vector::Vector(int x, int y) : x(x), y(y){
     computePolar();
 }
 
-/** Constructeur en coordonnées polaires */
 Vector::Vector(double ray, double theta) : ray(ray), theta(theta){
     computeCartesian();
 }
 
-/** Constructeur par défaut */
+Vector::Vector(const Vector& vector) {
+    this->x = vector.getX();
+    this->y = vector.getY();
+    computePolar();
+}
+
 Vector::Vector() : x(0), y(0){
     computePolar();
 }
 
-/** Retourne un nouvel objet de type vecteur, somme des deux vecteurs */
 Vector Vector:: operator+(const Vector& other) const{
     return {this->x + other.x, this->y + other.y};
 }
 
-/** Retourne un nouvel objet de type vecteur, soustraction des deux vecteurs */
 Vector Vector:: operator-(const Vector& other) const{
     return {this->x - other.x, this->y - other.y};
 }
 
-/** Retourne la distance entre deux points */
 int Vector::distanceTo(const Vector &other) const{
     return (int)((*this-other).getRay());
 }
 
-/** Calcul des coordonnées polaires à partir des cartéiennes */
 void Vector::computePolar() {
     this->ray=sqrt(this->x*this->x + this->y*this->y);
 
@@ -58,17 +57,11 @@ void Vector::computePolar() {
     }
 }
 
-/** Calcul des coordonnées cartésiennes à partir des polaires */
 void Vector::computeCartesian() {
     this->x = (int)(ray*cos(this->theta));
     this->y = (int)(ray*sin(this->theta));
 }
 
-Vector Vector::clone(){
-    return {this->x, this->y};
-}
-
-/** Getters & Setters */
 int Vector::getX() const {
     return x;
 }

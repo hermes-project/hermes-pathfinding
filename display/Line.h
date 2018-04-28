@@ -10,12 +10,18 @@
 
 class Line : public QLabel {
 public:
+    /** Constructeurs */
     Line(QWidget* parent, const QString line);
-    Line* clone();
+    Line(const Line& line);
+
+    /** Getter */
+    const QString &getLine() const;
 
 private:
     QString line;
-    const QFont font = QFont("Helvetica", 11, QFont::Medium);
+
+    /** Le style utilisé à l'affichage */
+    const QFont font = QFont("Helvetica", 10, QFont::Medium);
     const QColor textColor = QColor(220, 230, 240);
 };
 

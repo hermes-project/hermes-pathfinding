@@ -5,7 +5,6 @@
 #include <cmath>
 #include "Ellipse.h"
 
-/** Constructeur */
 Ellipse::Ellipse(Vector center, int width, int height, double angle) :
         center (center), angle (angle){
 
@@ -23,12 +22,6 @@ Ellipse::Ellipse(Vector center, int width, int height, double angle) :
     this->e = sqrt(width*width - height*height)/width;
 }
 
-/** Useful */
-Ellipse Ellipse::clone() {
-    return Ellipse(this->center, this->width, this->height, this->angle);
-}
-
-/** Getters & Setters */
 const Vector &Ellipse::getCenter() const {
     return center;
 }

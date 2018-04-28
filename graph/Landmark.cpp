@@ -4,7 +4,12 @@
 
 #include "Landmark.h"
 
-Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) : size_X(size_X), size_Y(size_Y), init_nb_Obstacle(nb_obstacle){
+Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) :
+        size_X(size_X),
+        size_Y(size_Y),
+        init_nb_Obstacle(nb_obstacle),
+        log(Log::getInstance())
+{
     srand(time(nullptr));
     initObstacle();
     UL = Vector(-size_X/2, size_Y/2);

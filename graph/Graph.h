@@ -7,6 +7,7 @@
 
 #include "Landmark.h"
 #include "../smartMaths/maths_lib.h"
+#include "../utils/Log.h"
 
 #define PI 3.1415926535
 #define N_NODE 20.0
@@ -32,6 +33,7 @@ public:
     Landmark *getLandmark() const;
 
 private:
+    Log* log;
     Landmark* landmark;
     std::vector<Node> staticNodes;
 

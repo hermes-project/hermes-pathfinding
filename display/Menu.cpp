@@ -4,7 +4,8 @@
 
 #include "Menu.h"
 
-Menu::Menu(QWidget *parent) {
+Menu::Menu(QWidget *parent) : QWidget(parent)
+{
     // Les boutons à lier avec les bonnes méthodes
     quit = new QPushButton("Quit");
     regenerate = new QPushButton("Regenerate");
@@ -23,8 +24,5 @@ Menu::Menu(QWidget *parent) {
     layout->addWidget(quit, 0, 1);
     layout->addWidget(add, 1, 0);
     layout->addWidget(empty, 1, 1);
-
     this->setLayout(layout);
 }
-
-void Menu::paintEvent(QPaintEvent *event) {}

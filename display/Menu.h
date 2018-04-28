@@ -12,9 +12,10 @@
 class Menu : public QWidget {
     Q_OBJECT
 public:
+    /** Constructeur */
     Menu(QWidget* parent= nullptr);
-    void paintEvent(QPaintEvent* event) override;
 
+    /** Les botons du menu */
     QPushButton* quit;
     QPushButton* regenerate;
     QPushButton* add;

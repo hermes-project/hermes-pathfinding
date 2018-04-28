@@ -14,6 +14,11 @@ Line::Line(QWidget* parent, const QString line) : QLabel(parent), line(line){
     this->setText(line);
 }
 
-Line* Line::clone() {
-    return new Line(this->nativeParentWidget(), line);
+Line::Line(const Line &line) {
+    this->setParent(line.nativeParentWidget());
+    this->line = line.getLine();
+}
+
+const QString &Line::getLine() const {
+    return line;
 }

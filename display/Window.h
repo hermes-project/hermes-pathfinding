@@ -8,23 +8,25 @@
 #include <QtWidgets/QtWidgets>
 #include "../graph/Landmark.h"
 #include "LandmarkFrame.h"
-#include "Log.h"
+#include "../utils/Log.h"
+#include "LogFrame.h"
 #include "Menu.h"
 
 class Window : public QWidget{
 public:
+    /** Constructeur et Destructeur */
     Window(QWidget* parent= nullptr, Landmark* landmark= nullptr);
     ~Window(){
         delete frame;
         delete menu;
-        delete log;
+        delete logFrame;
     }
 
 private:
     /** Frame affichant l'état du Landmark */
     LandmarkFrame* frame;
     Menu* menu;
-    Log* log;
+    LogFrame* logFrame;
 };
 
 

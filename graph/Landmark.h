@@ -15,6 +15,7 @@
 #include "Node.h"
 #include "../smartMaths/Circle.h"
 #include "../smartMaths/maths_lib.h"
+#include "../utils/Log.h"
 
 class Landmark {
 public:
@@ -40,6 +41,7 @@ public:
     const Vector &getDR() const;
 
 private:
+    Log* log;
     int size_X;
     int size_Y;
     int init_nb_Obstacle;

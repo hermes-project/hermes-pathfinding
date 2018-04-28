@@ -4,18 +4,15 @@
 
 #include "Node.h"
 
-/** Constructeurs */
 Node::Node(int x, int y) : Vector(x,y), predecessor(nullptr){}
 Node::Node(double ray, double theta) : Vector(ray, theta), predecessor(nullptr){}
 
-/** Créer un liens entre deux noeuds */
 void Node::createLink(Node *node) {
     int distance = this->distanceTo(*node);
     this->getListNeighbour().emplace(node, distance);
     node->getListNeighbour().emplace(this, distance);
 }
 
-/** Getters & Setters */
 Node* Node::getPredecessor() const {
     return predecessor;
 }

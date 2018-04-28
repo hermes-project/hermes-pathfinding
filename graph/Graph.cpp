@@ -4,7 +4,7 @@
 
 #include "Graph.h"
 
-Graph::Graph(Landmark *landmark) : landmark(landmark){
+Graph::Graph(Landmark *landmark) : landmark(landmark), log(Log::getInstance()){
     generateNodes();
     generateRidges();
 }
@@ -46,6 +46,9 @@ void Graph::update(){
     staticNodes.clear();
     generateNodes();
     generateRidges();
+    log->debug("Test Debug");
+    log->warning("Test Warning");
+    log->error("Test error");
 }
 
 std::vector<Node> &Graph::getStaticNodes(){

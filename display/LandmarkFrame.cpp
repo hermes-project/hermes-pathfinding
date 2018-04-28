@@ -35,6 +35,7 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
     painter.setPen(pen);
     painter.setBrush(brush);
 
+    // Elements de référence : les coins et les axes du repère
     painter.drawLine(landmark->getSize_X()/2 + MARGE_X/2, 0, landmark->getSize_X()/2 + MARGE_X/2, 1000);
     painter.drawLine(0, landmark->getSize_Y()/2 + MARGE_Y/2, 2000, landmark->getSize_Y()/2 + MARGE_Y/2);
     painter.drawEllipse(ORIGIN.getX()-5, ORIGIN.getY()-5, 10, 10);
@@ -43,6 +44,7 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
     painter.drawEllipse(DL.getX()-5, DL.getY()-5, 10, 10);
     painter.drawEllipse(DR.getX()-5, DR.getY()-5, 10, 10);
 
+    // Les obstalces
     std::vector<Circle>::iterator it;
     std::vector<Circle> listStatic = landmark->getListStaticObstacle();
     for(it = listStatic.begin(); it!= listStatic.end(); it++){
@@ -50,6 +52,7 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
         painter.drawEllipse(display.getX()-it->getWidth()/2, display.getY()-it->getWidth()/2, it->getWidth(), it->getWidth());
     }
 
+    // Les noeuds et arrêtes du graphe
     std::vector<Node>::iterator itNode;
     std::map<Node*, int>::iterator itNodeN;
     for(itNode = (graph->getStaticNodes()).begin(); itNode!= (graph->getStaticNodes()).end(); itNode++){

@@ -21,6 +21,7 @@ class LandmarkFrame : public QFrame{
     void mouseReleaseEvent(QMouseEvent* event) override ;
 
 public slots:
+    /** Méthode appelées en cas d'appuie sur un bouton du menu */
     void regenerate(){
         landmark->reInitObstacle();
         graph->update();
@@ -33,6 +34,7 @@ public slots:
     }
 
 public:
+    /** Constructeur & Destructeur */
     LandmarkFrame(QWidget* parent, Graph* graph);
     ~LandmarkFrame() override {
         delete pos;

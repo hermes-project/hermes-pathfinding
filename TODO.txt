@@ -1,8 +1,8 @@
-Interface graphique :   Afficher des obstacles et un graph,
-                        Mapper les boutons pour appeler le pathfinding
-                        Mapper les boutons pour réinitialiser les obstacles
+Utils:                  Créer une classe de Log et la piper sur le LogFrame
 
-Pathfinding:            Créer le graphe
-                        Mapper les méthodes avec l'interface pour l'afficher
-                        Implémenter Dijktra
+Pathfinding:            Implémenter Dijktra
                         Implémenter Astar
+
+Obstacles Mouvant:      Implémenter les Obstacles mouvants
+                        Implémenter des Threads dédié à la gestion des obstacles mouvants
+                        Implémenter Dstar

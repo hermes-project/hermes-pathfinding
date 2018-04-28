@@ -12,9 +12,6 @@ public:
     /** Constructeur */
     Ellipse(Vector center, int width, int height, double angle);
 
-    /** Useful */
-    Ellipse clone();
-
     /** Getters & Setters */
     const Vector &getCenter() const;
     void setCenter(const Vector &center);
