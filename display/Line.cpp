@@ -4,7 +4,9 @@
 
 #include "Line.h"
 
-Line::Line(QWidget* parent, const QString line) : QLabel(parent), line(line){
+Line::Line(QWidget* parent, const QString line) :
+        QLabel(parent),
+        line(line){
     this->setAlignment(Qt::AlignTop);
     this->setFont(font);
 

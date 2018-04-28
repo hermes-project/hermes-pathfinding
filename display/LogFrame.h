@@ -18,9 +18,9 @@ public:
     LogFrame(QWidget* parent, int size_Y);
 
     /** Methodes permettant d'afficher une ligne sur la frame */
-    void debug(const char* line);
-    void warning(const char* line);
-    void error(const char* line);
+    void debug(const std::string mess);
+    void warning(const std::string mess);
+    void error(const std::string mess);
 
     /** Getter */
     int getNbLine() const;

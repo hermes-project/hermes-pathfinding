@@ -30,9 +30,9 @@ public:
     void setFrame(LogFrame* logFrame);
 
     /** Méthodes d'affichage du debug */
-    void debug(const char* mess);
-    void warning(const char* mess);
-    void error(const char* mess);
+    void debug(const std::string mess);
+    void warning(const std::string mess);
+    void error(const std::string mess);
 };
 
 #endif //HERMES_PATHFINDING_LOG_H

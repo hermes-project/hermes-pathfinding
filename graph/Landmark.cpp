@@ -10,7 +10,7 @@ Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) :
         init_nb_Obstacle(nb_obstacle),
         log(Log::getInstance())
 {
-    srand(time(nullptr));
+    srand(time(NULL));
     initObstacle();
     UL = Vector(-size_X/2, size_Y/2);
     UR = Vector(size_X/2, size_Y/2);
@@ -37,11 +37,13 @@ void Landmark::addObstacle() {
     std::default_random_engine generator;
     std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION_RAY);
     std::normal_distribution<float> nb_Obstacle(AVERAGE_ADDED_OBSTACLE, STD_DEVIATION_ADDED_OBSTACLE);
-    for (int i=0; i<(int)nb_Obstacle(generator); i++){
+    int nb = (int) nb_Obstacle(generator);
+    for (int i=0; i<nb; i++){
         int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
         int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
         listStaticObstacle.emplace_back(Vector(posX, posY), (int)ray(generator));
     }
+    log->debug(std::to_string(nb) + " obstacles added, (total " + std::to_string(listStaticObstacle.size()) + ")");
 }
 
 bool Landmark::isInObstacle(const Vector& vector){

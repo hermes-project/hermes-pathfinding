@@ -4,7 +4,10 @@
 
 #include "Graph.h"
 
-Graph::Graph(Landmark *landmark) : landmark(landmark), log(Log::getInstance()){
+Graph::Graph(Landmark *landmark) :
+        landmark(landmark),
+        log(Log::getInstance())
+{
     generateNodes();
     generateRidges();
 }
@@ -30,25 +33,34 @@ void Graph::genNodeArnd(Circle &circle) {
     }
 }
 
-void Graph::generateRidges() {
+int Graph::generateRidges() {
+    int counter = 0;
     std::vector<Node>::iterator it1;
     std::vector<Node>::iterator it2;
     for (it1 = staticNodes.begin(); it1 != staticNodes.end(); it1++){
         for (it2 = it1; it2 != staticNodes.end(); it2++){
             if (it1 != it2 && !landmark->intersectAnyObstacle(*it1, *it2)){
                 it1->createLink(&(*it2));
+                counter++;
             }
         }
     }
+    return counter;
 }
 
 void Graph::update(){
     staticNodes.clear();
+    auto start_time = std::chrono::high_resolution_clock::now();
+
     generateNodes();
-    generateRidges();
-    log->debug("Test Debug");
-    log->warning("Test Warning");
-    log->error("Test error");
+    int nR = generateRidges();
+
+    auto end_time = std::chrono::high_resolution_clock::now();
+    auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+
+    log->debug("Time to create Graph : " + std::to_string(ms) + " ms");
+    log->debug(std::to_string(staticNodes.size()) + " nodes generated, " + std::to_string(nR) + " ridges generated");
+    log->debug("");
 }
 
 std::vector<Node> &Graph::getStaticNodes(){

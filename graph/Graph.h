@@ -10,7 +10,7 @@
 #include "../utils/Log.h"
 
 #define PI 3.1415926535
-#define N_NODE 20.0
+#define N_NODE 15.0
 #define MARGE_RAY 12.0
 
 class Graph {
@@ -39,7 +39,7 @@ private:
 
     /** Méthodes de création du graphe */
     void generateNodes();
-    void generateRidges();
+    int generateRidges();
     void genNodeArnd(Circle& circle);
 };
 

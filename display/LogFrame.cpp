@@ -20,8 +20,8 @@ LogFrame::LogFrame(QWidget *parent, int size_Y) :
     this->setLayout(layout);
 }
 
-void LogFrame::debug(const char *line) {
-    Line* newLine = new Line(this, line);
+void LogFrame::debug(const std::string mess) {
+    Line* newLine = new Line(this, mess.c_str());
     if(nbLine > limitLine) {
         this->setFixedHeight(this->height() + TEXT_SIZE);
         if (this->width() != 285) {
@@ -32,8 +32,8 @@ void LogFrame::debug(const char *line) {
     layout->addWidget(newLine);
 }
 
-void LogFrame::warning(const char *line) {
-    Line* newLine = new Line(this, line);
+void LogFrame::warning(const std::string mess) {
+    Line* newLine = new Line(this, mess.c_str());
     QPalette palette;
     palette.setColor(QPalette::WindowText, QColor(255, 215, 40));
     newLine->setPalette(palette);
@@ -48,8 +48,8 @@ void LogFrame::warning(const char *line) {
     layout->addWidget(newLine);
 }
 
-void LogFrame::error(const char *line) {
-    Line* newLine = new Line(this, line);
+void LogFrame::error(const std::string mess) {
+    Line* newLine = new Line(this, mess.c_str());
     QPalette palette;
     palette.setColor(QPalette::WindowText, QColor(255, 120, 120));
     newLine->setPalette(palette);
