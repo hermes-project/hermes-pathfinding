@@ -8,9 +8,9 @@
 #include <iostream>
 #include "../display/LogFrame.h"
 
-#define DHEADER "\033[32m"
-#define WHEADER "\033[33mWARNING : "
-#define EHEADER "\033[1;31mERROR : "
+#define DHEADER "\033[34m            "
+#define WHEADER "\033[33mWARNING :   "
+#define EHEADER "\033[1;31mERROR :     "
 #define RESETHEADER "\033[0m"
 
 class Log {

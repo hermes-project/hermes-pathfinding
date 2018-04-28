@@ -9,7 +9,7 @@
 #include <queue>
 #include "Line.h"
 
-#define TEXT_SIZE 22
+#define TEXT_SIZE 21
 
 class LogFrame : public QFrame {
     Q_OBJECT
@@ -26,8 +26,8 @@ public:
     int getNbLine() const;
 
 private:
-    std::queue<Line*> lines;
     int nbLine;
+    int limitLine;
     QVBoxLayout* layout;
 };
 

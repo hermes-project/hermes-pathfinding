@@ -1,4 +1,4 @@
-Utils:                  Créer une classe de Log et la piper sur le LogFrame
+Utils:                  Ajouter la stacktrace dans l'affichage du log
 
 Pathfinding:            Implémenter Dijktra
                         Implémenter Astar
