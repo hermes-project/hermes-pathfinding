@@ -46,6 +46,7 @@ private:
     int size_Y;
     int init_nb_Obstacle;
     std::vector<Circle> listStaticObstacle;
+    std::default_random_engine generator;
     Vector UL;
     Vector UR;
     Vector DL;
