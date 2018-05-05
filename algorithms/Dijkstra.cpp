@@ -4,13 +4,13 @@ Dijkstra::Dijkstra(Landmark *landmark, Graph *graph) :
     graph(graph), landmark(landmark),log(Log::getInstance()){}
 
 
-std::vector<Vector> Dijkstra::findPath(const Vector begin,const Vector aim){
+std::vector<Vector> Dijkstra::findPath( Vector begin,Vector aim){
    if (!this->landmark->intersectAnyObstacle(begin,aim)){
         std::vector<Vector> path(2);
-        path[0]= Node (begin.getX(), begin.getY());
-        path[1]=aim;//
+        path[0]= begin;
+        path[1]= aim;//
         return path;
-    }
+   }
 
     initPithfinder(begin,aim);
 
@@ -21,8 +21,8 @@ std::vector<Vector> Dijkstra::findPath(const Vector begin,const Vector aim){
         if (visited.getX()==aimNode->getX() && visited.getY()==aimNode->getY()){
             if (aimNode->getPredecessor()== nullptr){
                 log->warning("position begin dans un obstacle ou hors la table");
-                std::vector<Vector> path(1);
-                path[0]=begin;
+                std::vector<Vector> path;
+                path.clear();
                 return path;
             }
             return reconstructPath();
@@ -50,8 +50,8 @@ std::vector<Vector> Dijkstra::findPath(const Vector begin,const Vector aim){
 
     if (aimNode->getPredecessor()== nullptr){
         log->warning("position begin dans un obstacle ou hors la table");
-        std::vector<Vector> path(1);
-        path[0]=begin;
+        std::vector<Vector> path;
+        path.clear();
         return path;
     }
 
@@ -61,7 +61,7 @@ std::vector<Vector> Dijkstra::findPath(const Vector begin,const Vector aim){
 }
 
 
-void Dijkstra::initPithfinder(const Vector begin,const Vector aim){
+void Dijkstra::initPithfinder(Vector begin,Vector aim){
     if(!landmark->isInLandmark(begin)|| landmark->isInObstacle(begin)){
         log->warning("position begin dans un obstacle ou hors la table");
         return;

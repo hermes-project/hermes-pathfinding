@@ -4,7 +4,12 @@
 
 #include "LandmarkFrame.h"
 
-LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) : QFrame(parent), landmark(graph->getLandmark()), graph(graph) {
+LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) :
+        QFrame(parent),
+        landmark(graph->getLandmark()),
+        graph(graph),
+        dijkstra(new Dijkstra(landmark, graph))
+{
     // La frame prend toute la place qu'elle peut prendre
     this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
 
@@ -20,6 +25,7 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) : QFrame(parent), la
     // Initialisation de variables...
     pos = nullptr;
     aim = nullptr;
+
     ORIGIN = changeToDisplay(Vector(0,0));
     UL = changeToDisplay(landmark->getUL());
     UR = changeToDisplay(landmark->getUR());
@@ -27,6 +33,7 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) : QFrame(parent), la
     DR = changeToDisplay(landmark->getDR());
     brush = QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern);
     pen = QPen(QColor(255, 40, 20, 250), 0.3);
+
 }
 
 void LandmarkFrame::paintEvent(QPaintEvent *event) {
@@ -63,12 +70,23 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
             painter.drawLine(display.getX(), display.getY(), displayN.getX(), displayN.getY());
         }
     }
+
+    //Dijkstra
+    painter.setPen(QPen(QColor(40, 200, 40, 220), 2));
+   if (!path.empty() ){
+        for (int etape=0;etape<path.size()-1; etape++){
+            Vector depart=changeToDisplay(path[etape]);
+            Vector arrivee=changeToDisplay(path[etape+1]);
+            painter.drawLine(depart.getX(),depart.getY(),arrivee.getX(),arrivee.getY());
+        }
+    }
+
 }
 
 void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
     if(event->button()==Qt::MouseButton::LeftButton){
-        int posX = event->x() - 940;
-        int posY = landmark->getSize_Y() - event->y() - 350;
+        int posX = event->x() - landmark->getSize_X()/2 - MARGE_X/2;
+        int posY = landmark->getSize_Y()/2 - event->y() + MARGE_Y/2;
         if(!pos){
             pos = new Vector(posX, posY);
         }
@@ -78,8 +96,8 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
         }
     }
     else if(event->button()==Qt::MouseButton::RightButton){
-        int posX = event->x() - 940;
-        int posY = landmark->getSize_Y() - event->y() - 350;
+        int posX = event->x() - landmark->getSize_X()/2 - MARGE_X/2;
+        int posY = landmark->getSize_Y()/2 - event->y() + MARGE_Y/2;
         if(!aim){
             aim = new Vector(posX, posY);
         }
@@ -87,6 +105,10 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
             aim->setX(posX);
             aim->setY(posY);
         }
+    }
+
+    if (pos && aim){
+        //path=dijkstra->findPath(*pos,*aim);
     }
 
 }

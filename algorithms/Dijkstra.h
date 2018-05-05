@@ -11,12 +11,12 @@
 class Dijkstra {
 public:
     Dijkstra(Landmark* landmark, Graph* graph);
-    std::vector<Vector> findPath(const Vector begin, const Vector aim);
+    std::vector<Vector> findPath( Vector begin, Vector aim);
 private:
     Node *beginNode= nullptr;
     Node *aimNode= nullptr;
     std::multimap<int,Node> openList;
-    void initPithfinder(const Vector begin, const Vector aim);
+    void initPithfinder( Vector begin,  Vector aim);
     std::vector<Vector> reconstructPath();
     Graph *graph;
     Landmark *landmark;

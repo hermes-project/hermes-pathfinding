@@ -10,6 +10,7 @@
 #include <QPaintEvent>
 #include "../graph/Landmark.h"
 #include "../graph/Graph.h"
+#include "../algorithms/Dijkstra.h"
 
 #define MARGE_X 20
 #define MARGE_Y 20
@@ -48,9 +49,11 @@ public:
 private:
     /** Objets qui contiennent tout ce qu'il faut afficher */
     Landmark* landmark;
+    Dijkstra* dijkstra;
     Graph* graph;
     Vector* pos;
     Vector* aim;
+    std::vector<Vector> path;
 
     /** Constantes d'affichage */
     Vector ORIGIN;
