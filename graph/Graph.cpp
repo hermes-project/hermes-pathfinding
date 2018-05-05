@@ -2,6 +2,7 @@
 // Created by rem on 20/03/18.
 //
 
+#include <chrono>
 #include "Graph.h"
 
 Graph::Graph(Landmark *landmark) :
@@ -69,4 +70,39 @@ std::vector<Node> &Graph::getStaticNodes(){
 
 Landmark *Graph::getLandmark() const {
     return landmark;
+}
+
+void Graph::reinitGraph() {
+    std::vector<Node>::iterator it1;
+    for (it1 = staticNodes.begin(); it1 != staticNodes.end(); it1++){
+        it1->setHeuristic(-1);
+        it1->setCostFromBegin(100000);
+        it1->setPredecessor(nullptr);
+    }
+}
+
+void Graph::addNode(Node &node) {
+    if (!landmark->isInLandmark(node) || landmark->isInObstacle(node)){
+        log->warning("position dans un obstacle ou hors la table");
+        return;
+    }
+    staticNodes.push_back(node);
+    replaceRidges(node);
+}
+
+
+void Graph::replaceRidges(Node &node) {
+    std::vector<Node>::iterator it1;
+    for (it1 = staticNodes.begin(); it1 != staticNodes.end(); it1++){
+        if ((it1->getX() != node.getX() || it1->getY()!=node.getY()) && !landmark->intersectAnyObstacle(*it1, node)){
+            it1->createLink(&(node));
+        }
+    }
+}
+
+void Graph::deleteNode(Node &node) {
+    for (auto neighbour: node.getListNeighbour()){
+        neighbour.first->getListNeighbour().erase(&node);
+    }
+    //staticNodes.erase(*node);
 }

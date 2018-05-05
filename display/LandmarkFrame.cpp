@@ -88,6 +88,7 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
             aim->setY(posY);
         }
     }
+
 }
 
 Vector LandmarkFrame::changeToDisplay(const Vector &vector) const{

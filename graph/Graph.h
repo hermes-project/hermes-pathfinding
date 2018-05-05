@@ -32,6 +32,11 @@ public:
     std::vector<Node> &getStaticNodes();
     Landmark *getLandmark() const;
 
+    /**Méthodes utilisés en Dijkstra**/
+    void addNode(Node& node);
+    void deleteNode(Node& node);
+    void reinitGraph();
+
 private:
     Log* log;
     Landmark* landmark;
@@ -41,6 +46,8 @@ private:
     void generateNodes();
     int generateRidges();
     void genNodeArnd(Circle& circle);
+    void replaceRidges(Node & node);
+
 };
 
 

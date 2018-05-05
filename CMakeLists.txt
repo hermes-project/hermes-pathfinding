@@ -32,6 +32,8 @@ add_executable(Hermes_pathfinding
         graph/Node.h
         graph/Node.cpp
         utils/Log.h
-        utils/Log.cpp)
+        utils/Log.cpp
+        algorithms/Dijkstra.cpp
+        algorithms/Dijkstra.h)
 
 target_link_libraries(Hermes_pathfinding Qt5::Core Qt5::Widgets)
