@@ -36,3 +36,11 @@
 
 # Clion-debug
 cmake-build-debug/*
+
+# VSC
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Hermes_pathfinding_autogen/
+Makefile
+Hermes_pathfinding
