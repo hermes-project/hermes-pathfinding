@@ -49,10 +49,7 @@ private:
     Landmark* landmark;
     Dijkstra* dijkstra;
     Graph* graph;
-<<<<<<< HEAD
-=======
     std::vector<Vector> path;
->>>>>>> 0d62d41819f803da98647573ee4ca8c5cd519a80
     Vector *pos;
     Vector *aim;
     Vector *displayPos;
