@@ -37,8 +37,6 @@ public:
     /** Constructeur & Destructeur */
     LandmarkFrame(QWidget* parent, Graph* graph);
     ~LandmarkFrame() override {
-        delete pos;
-        delete aim;
         delete graph;
     }
 
@@ -49,8 +47,10 @@ private:
     /** Objets qui contiennent tout ce qu'il faut afficher */
     Landmark* landmark;
     Graph* graph;
-    Vector* pos;
-    Vector* aim;
+    Vector *pos;
+    Vector *aim;
+    Vector *displayPos;
+    Vector *displayAim;
 
     /** Constantes d'affichage */
     Vector ORIGIN;

@@ -4,7 +4,11 @@
 
 #include "LandmarkFrame.h"
 
-LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) : QFrame(parent), landmark(graph->getLandmark()), graph(graph) {
+LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) :
+        QFrame(parent),
+        landmark(graph->getLandmark()),
+        graph(graph)
+{
     // La frame prend toute la place qu'elle peut prendre
     this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
 
@@ -18,8 +22,10 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) : QFrame(parent), la
     installEventFilter(this);
 
     // Initialisation de variables...
-    pos = nullptr;
-    aim = nullptr;
+    pos = new Vector();
+    aim = new Vector();
+    displayPos = new Vector();
+    displayAim = new Vector();
     ORIGIN = changeToDisplay(Vector(0,0));
     UL = changeToDisplay(landmark->getUL());
     UR = changeToDisplay(landmark->getUR());
@@ -63,31 +69,26 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
             painter.drawLine(display.getX(), display.getY(), displayN.getX(), displayN.getY());
         }
     }
+
+    // Noeuds
+    painter.drawEllipse(displayPos->getX() - 2, displayPos->getY() - 2, 4, 4);
+    painter.drawEllipse(displayAim->getX() - 2, displayAim->getY() - 2, 4, 4);
 }
 
 void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
     if(event->button()==Qt::MouseButton::LeftButton){
-        int posX = event->x() - 940;
-        int posY = landmark->getSize_Y() - event->y() - 350;
-        if(!pos){
-            pos = new Vector(posX, posY);
-        }
-        else{
-            pos->setX(posX);
-            pos->setY(posY);
-        }
+        displayPos->setX(event->x());
+        displayPos->setY(event->y());
+        pos->setX(displayPos->getX() - landmark->getSize_X()/2 - MARGE_X/2);
+        pos->setY(displayPos->getY() - landmark->getSize_Y()/2 + MARGE_Y/2);
     }
     else if(event->button()==Qt::MouseButton::RightButton){
-        int posX = event->x() - 940;
-        int posY = landmark->getSize_Y() - event->y() - 350;
-        if(!aim){
-            aim = new Vector(posX, posY);
-        }
-        else{
-            aim->setX(posX);
-            aim->setY(posY);
-        }
+        displayAim->setX(event->x());
+        displayAim->setY(event->y());
+        aim->setX(displayPos->getX() - landmark->getSize_X()/2 - MARGE_X/2);
+        aim->setY(displayPos->getY() - landmark->getSize_Y()/2 + MARGE_Y/2);
     }
+    update();
 }
 
 Vector LandmarkFrame::changeToDisplay(const Vector &vector) const{
