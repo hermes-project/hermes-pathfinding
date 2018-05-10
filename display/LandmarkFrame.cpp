@@ -7,7 +7,8 @@
 LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) :
         QFrame(parent),
         landmark(graph->getLandmark()),
-        graph(graph)
+        graph(graph),
+        dijkstra(new Dijkstra(landmark, graph))
 {
     // La frame prend toute la place qu'elle peut prendre
     this->setFixedSize(landmark->getSize_X() + MARGE_X, landmark->getSize_Y() + MARGE_Y);
@@ -33,6 +34,7 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) :
     DR = changeToDisplay(landmark->getDR());
     brush = QBrush(QColor(200, 210, 220, 160), Qt::SolidPattern);
     pen = QPen(QColor(255, 40, 20, 250), 0.3);
+
 }
 
 void LandmarkFrame::paintEvent(QPaintEvent *event) {
@@ -70,9 +72,15 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
         }
     }
 
-    // Noeuds
-    painter.drawEllipse(displayPos->getX() - 2, displayPos->getY() - 2, 4, 4);
-    painter.drawEllipse(displayAim->getX() - 2, displayAim->getY() - 2, 4, 4);
+    //Dijkstra
+    painter.setPen(QPen(QColor(40, 200, 40, 220), 2));
+   if (!path.empty() ){
+        for (int etape=0;etape<path.size()-1; etape++){
+            Vector depart=changeToDisplay(path[etape]);
+            Vector arrivee=changeToDisplay(path[etape+1]);
+            painter.drawLine(depart.getX(),depart.getY(),arrivee.getX(),arrivee.getY());
+        }
+    }
 }
 
 void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
@@ -80,13 +88,16 @@ void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
         displayPos->setX(event->x());
         displayPos->setY(event->y());
         pos->setX(displayPos->getX() - landmark->getSize_X()/2 - MARGE_X/2);
-        pos->setY(displayPos->getY() - landmark->getSize_Y()/2 + MARGE_Y/2);
+        pos->setY(-displayPos->getY() + landmark->getSize_Y()/2 + MARGE_Y/2);
     }
     else if(event->button()==Qt::MouseButton::RightButton){
         displayAim->setX(event->x());
         displayAim->setY(event->y());
-        aim->setX(displayPos->getX() - landmark->getSize_X()/2 - MARGE_X/2);
-        aim->setY(displayPos->getY() - landmark->getSize_Y()/2 + MARGE_Y/2);
+        aim->setX(displayAim->getX() - landmark->getSize_X()/2 - MARGE_X/2);
+        aim->setY(-displayAim->getY() + landmark->getSize_Y()/2 + MARGE_Y/2);
+    }
+    if (!((pos->getX() == 0 && pos->getY() == 0) || (aim->getX() == 0 && aim->getY() == 0))) {
+        path = dijkstra->findPath(*pos, *aim);
     }
     update();
 }
