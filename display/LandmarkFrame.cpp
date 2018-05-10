@@ -23,9 +23,10 @@ LandmarkFrame::LandmarkFrame(QWidget *parent, Graph* graph) :
     installEventFilter(this);
 
     // Initialisation de variables...
-    pos = nullptr;
-    aim = nullptr;
-
+    pos = new Vector();
+    aim = new Vector();
+    displayPos = new Vector();
+    displayAim = new Vector();
     ORIGIN = changeToDisplay(Vector(0,0));
     UL = changeToDisplay(landmark->getUL());
     UR = changeToDisplay(landmark->getUR());
@@ -85,32 +86,21 @@ void LandmarkFrame::paintEvent(QPaintEvent *event) {
 
 void LandmarkFrame::mouseReleaseEvent(QMouseEvent *event) {
     if(event->button()==Qt::MouseButton::LeftButton){
-        int posX = event->x() - landmark->getSize_X()/2 - MARGE_X/2;
-        int posY = landmark->getSize_Y()/2 - event->y() + MARGE_Y/2;
-        if(!pos){
-            pos = new Vector(posX, posY);
-        }
-        else{
-            pos->setX(posX);
-            pos->setY(posY);
-        }
+        displayPos->setX(event->x());
+        displayPos->setY(event->y());
+        pos->setX(displayPos->getX() - landmark->getSize_X()/2 - MARGE_X/2);
+        pos->setY(-displayPos->getY() + landmark->getSize_Y()/2 + MARGE_Y/2);
     }
     else if(event->button()==Qt::MouseButton::RightButton){
-        int posX = event->x() - landmark->getSize_X()/2 - MARGE_X/2;
-        int posY = landmark->getSize_Y()/2 - event->y() + MARGE_Y/2;
-        if(!aim){
-            aim = new Vector(posX, posY);
-        }
-        else{
-            aim->setX(posX);
-            aim->setY(posY);
-        }
+        displayAim->setX(event->x());
+        displayAim->setY(event->y());
+        aim->setX(displayAim->getX() - landmark->getSize_X()/2 - MARGE_X/2);
+        aim->setY(-displayAim->getY() + landmark->getSize_Y()/2 + MARGE_Y/2);
     }
-
-    if (pos && aim){
-        //path=dijkstra->findPath(*pos,*aim);
+    if (!((pos->getX() == 0 && pos->getY() == 0) || (aim->getX() == 0 && aim->getY() == 0))) {
+        path = dijkstra->findPath(*pos, *aim);
     }
-
+    update();
 }
 
 Vector LandmarkFrame::changeToDisplay(const Vector &vector) const{
