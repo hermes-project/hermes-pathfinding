@@ -10,7 +10,7 @@ Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) :
         init_nb_Obstacle(nb_obstacle),
         log(Log::getInstance())
 {
-    srand(time(NULL));
+    generator.seed(time(NULL));
     initObstacle();
     UL = Vector(-size_X/2, size_Y/2);
     UR = Vector(size_X/2, size_Y/2);
@@ -19,11 +19,11 @@ Landmark::Landmark(int size_X, int size_Y, int nb_obstacle) :
 }
 
 void Landmark::initObstacle() {
-    std::default_random_engine generator;
     std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION_RAY);
+    std::uniform_int_distribution<int> pos;
     for (int i=0; i<init_nb_Obstacle; i++){
-        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
-        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
+        int posX = pos(generator)%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
+        int posY = pos(generator)%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
         listStaticObstacle.emplace_back(Vector(posX, posY), (int)ray(generator));
     }
 }
@@ -34,13 +34,13 @@ void Landmark::reInitObstacle() {
 }
 
 void Landmark::addObstacle() {
-    std::default_random_engine generator;
     std::normal_distribution<float> ray(AVERAGE_RAY, STD_DEVIATION_RAY);
     std::normal_distribution<float> nb_Obstacle(AVERAGE_ADDED_OBSTACLE, STD_DEVIATION_ADDED_OBSTACLE);
+    std::uniform_int_distribution<int> pos;
     int nb = (int) nb_Obstacle(generator);
     for (int i=0; i<nb; i++){
-        int posX = rand()%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
-        int posY = rand()%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
+        int posX = pos(generator)%(size_X - AVERAGE_RAY) - size_X/2 + AVERAGE_RAY;
+        int posY = pos(generator)%(size_Y - AVERAGE_RAY) - size_Y/2 + AVERAGE_RAY;
         listStaticObstacle.emplace_back(Vector(posX, posY), (int)ray(generator));
     }
     log->debug(std::to_string(nb) + " obstacles added, (total " + std::to_string(listStaticObstacle.size()) + ")");
